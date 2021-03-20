@@ -24,25 +24,25 @@ deployments:
         image: leventogut/my-app-nginx
       - name: my-app-php
         image: leventogut/my-app-php
-- name: my-app-db
+- name: my-app-mysql
   helm:
-    componentChart: true
+    componentChart: false
+    chart:
+      name: "bitnami/mysql"
+      version: "8.4.4"
     values:
-      containers:
-      - name: my-app-db
-        image: mysql:8.0
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: ${MYSQL_ROOT_PASSWORD}
-        - name: MYSQL_DATABASE
-          value: ${MYSQL_DATABASE}
-- name: my-app-memcached
+      mysqlDatabase: ${MYSQL_DATABASE}
+      mysqlRootPassword: ${MYSQL_ROOT_PASSWORD}
+- name: my-app-redis
   helm:
-    componentChart: true
+    componentChart: false
+    chart:
+      name: "bitnami/redis"
+      version: "12.8.3"
     values:
-      containers:
-      - name: my-app-memcached
-        image: memcached:1.6
+      networkPolicy.enabled: true
+      networkPolicy.allowExternal: true
+      password: ${REDIS_PASSWORD}
 dev:
   ports:
   - imageName: my_app-nginx
@@ -88,3 +88,6 @@ profiles:
     value:
     - sleep
     - "9999999999"
+commands:
+- name: php
+  command: devspace enter php

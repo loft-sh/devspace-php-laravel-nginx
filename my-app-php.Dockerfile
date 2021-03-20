@@ -3,6 +3,11 @@ FROM php:7.4-fpm
 WORKDIR /var/www/html
 
 
+RUN pecl install redis \
+    && pecl install xdebug \
+    && docker-php-ext-enable redis xdebug
+
+
 RUN apt update \
  && apt install -y git zip \
  && curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
