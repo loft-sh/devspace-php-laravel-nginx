@@ -5,7 +5,7 @@ profiles:
       my-app:
         deploymentConfigHash: 1fb6fd3fa78957a2bdf60fc74a9a173b116ad9a46143020efcbcbce071d0db0a
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
-        helmReleaseRevision: "1"
+        helmReleaseRevision: "2"
       my-app-db:
         deploymentConfigHash: 540d209c18e677d90c4844e34995cf308ecc6db3f8f4c2938ac2f60f1450cf72
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
@@ -33,10 +33,10 @@ profiles:
         tag: wCfTQRI
       my_app-php:
         imageConfigHash: 669bc8323224442da9d8bd0ad5c0735e2454eabe80f1e31e4ea2f4bc4f3fc7db
-        dockerfileHash: 91bf487c16c2873c446b24b61cb4fa629a1f7641c6cbdfc7af846853b7f90a21
+        dockerfileHash: e9db53a4eef8ee8705a7f237a384aef7f37c9aaf5c04e7c8bebf2e10db30c2c4
         contextHash: 756df96fbb0519f7ac2bc01f5961fe044894ad1a7d9c0b2592fd177979c41db7
         imageName: leventogut/my-app-php
-        tag: Fmrqsyz
+        tag: rBnDBQA
     lastContext:
       namespace: default
       context: docker-desktop

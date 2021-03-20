@@ -409,3 +409,33 @@
 {"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-6c6957444-xbzvk)","time":"2021-03-20T13:44:42+03:00"}
 {"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-20T13:44:42+03:00"}
 {"level":"info","msg":"Starting log streaming","time":"2021-03-20T13:44:42+03:00"}
+{"level":"info","msg":"Done building image leventogut/my-app-nginx:NCWSdcq (my_app-nginx)","time":"2021-03-20T14:21:45+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-20T14:23:47+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-20T14:23:47+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-20T14:23:47+03:00"}
+{"level":"info","msg":"Done building image leventogut/my-app-php:rBnDBQA (my_app-php)","time":"2021-03-20T14:24:12+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 2)","time":"2021-03-20T14:24:15+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-20T14:24:15+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-mysql","time":"2021-03-20T14:24:16+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-redis","time":"2021-03-20T14:24:16+03:00"}
+{"level":"warning","msg":"DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2021-03-20T14:24:26+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-6d9ff857dd-p65pf)","time":"2021-03-20T14:24:29+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-20T14:24:29+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-6d9ff857dd-p65pf)","time":"2021-03-20T14:24:32+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-6d9ff857dd-p65pf)","time":"2021-03-20T14:24:35+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-20T14:24:35+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-20T14:24:35+03:00"}
+{"level":"fatal","msg":"Automatically exit DevSpace, because the user is inactive for 3h0m9.949689554s. To disable automatic exiting, run with --inactivity-timeout=0","time":"2021-03-20T19:27:41+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-20T20:26:07+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-20T20:26:07+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-20T20:26:08+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-20T20:26:08+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-20T20:26:08+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-mysql","time":"2021-03-20T20:26:08+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-redis","time":"2021-03-20T20:26:09+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-6d9ff857dd-p65pf)","time":"2021-03-20T20:26:11+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-20T20:26:11+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-6d9ff857dd-p65pf)","time":"2021-03-20T20:26:13+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-6d9ff857dd-p65pf)","time":"2021-03-20T20:26:16+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-20T20:26:16+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-20T20:26:16+03:00"}
