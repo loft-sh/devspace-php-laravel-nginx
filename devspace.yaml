@@ -1,0 +1,90 @@
+version: v1beta9
+images:
+  my_app-nginx:
+    image: leventogut/my-app-nginx
+    preferSyncOverRebuild: true
+    injectRestartHelper: true
+    appendDockerfileInstructions:
+    - USER root
+    dockerfile: my-app-nginx.Dockerfile
+  my_app-php:
+    image: leventogut/my-app-php
+    preferSyncOverRebuild: true
+    injectRestartHelper: true
+    appendDockerfileInstructions:
+    - USER root
+    dockerfile: my-app-php.Dockerfile
+deployments:
+- name: my-app
+  helm:
+    componentChart: true
+    values:
+      containers:
+      - name: my-app-nginx
+        image: leventogut/my-app-nginx
+      - name: my-app-php
+        image: leventogut/my-app-php
+- name: my-app-db
+  helm:
+    componentChart: true
+    values:
+      containers:
+      - name: my-app-db
+        image: mysql:8.0
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: ${MYSQL_ROOT_PASSWORD}
+        - name: MYSQL_DATABASE
+          value: ${MYSQL_DATABASE}
+- name: my-app-memcached
+  helm:
+    componentChart: true
+    values:
+      containers:
+      - name: my-app-memcached
+        image: memcached:1.6
+dev:
+  ports:
+  - imageName: my_app-nginx
+    forward:
+    - port: 8080
+      remotePort: 80
+  open:
+  - url: http://localhost:8080
+  sync:
+  - imageName: my_app-nginx
+    excludePaths:
+    - .git/
+    uploadExcludePaths:
+    - Dockerfile
+    - "*.Dockerfile"
+    - devspace.yaml
+    onUpload:
+      restartContainer: true
+  - imageName: my_app-php
+    excludePaths:
+    - .git/
+    uploadExcludePaths:
+    - Dockerfile
+    - "*.Dockerfile"
+    - devspace.yaml
+    onUpload:
+      restartContainer: true
+profiles:
+- name: production
+  patches:
+  - op: remove
+    path: images.app.appendDockerfileInstructions
+  - op: remove
+    path: images.app.injectRestartHelper
+- name: interactive
+  patches:
+  - op: add
+    path: dev.interactive
+    value:
+      defaultEnabled: true
+  - op: add
+    path: images.app.entrypoint
+    value:
+    - sleep
+    - "9999999999"

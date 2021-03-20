@@ -1,0 +1,36 @@
+varsEncrypted: true
+profiles:
+  "":
+    deployments:
+      my-app:
+        deploymentConfigHash: 1fb6fd3fa78957a2bdf60fc74a9a173b116ad9a46143020efcbcbce071d0db0a
+        helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
+        helmReleaseRevision: "2"
+      my-app-db:
+        deploymentConfigHash: 540d209c18e677d90c4844e34995cf308ecc6db3f8f4c2938ac2f60f1450cf72
+        helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
+        helmReleaseRevision: "2"
+      my-app-memcached:
+        deploymentConfigHash: 5db054ef253d0ae32c27f2ee456f8c5637af80ccfc2338f8a6e93bdbea938335
+        helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
+        helmReleaseRevision: "1"
+      my-component:
+        deploymentConfigHash: d9cda0302a1c263d119241381b75518d38f1f917b9942b9e0a5965d25c274a89
+        helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
+        helmReleaseRevision: "1"
+    images:
+      my_app-nginx:
+        imageConfigHash: 9ebd524e21bf5588eedf34ba2719f1fcd7b677e96da66aa77d270a414c95d0dd
+        dockerfileHash: 6912c37766cf8541209cdc8ca7dad7421b6d4784a1b3392d83987b4339cac13f
+        contextHash: 38eab096786cf0ffee5318e158def2cdcad502dad98a70a16e4b1546a08c440b
+        imageName: leventogut/my-app-nginx
+        tag: CxmgQjW
+      my_app-php:
+        imageConfigHash: 669bc8323224442da9d8bd0ad5c0735e2454eabe80f1e31e4ea2f4bc4f3fc7db
+        dockerfileHash: 64a8847894c334ffd706e36d417fd7235c4665c1a5041706f9cc9aad947db94b
+        contextHash: 38eab096786cf0ffee5318e158def2cdcad502dad98a70a16e4b1546a08c440b
+        imageName: leventogut/my-app-php
+        tag: VTtxwgD
+    lastContext:
+      namespace: default
+      context: docker-desktop
