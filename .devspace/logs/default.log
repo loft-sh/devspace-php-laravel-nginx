@@ -439,3 +439,346 @@
 {"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-6d9ff857dd-p65pf)","time":"2021-03-20T20:26:16+03:00"}
 {"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-20T20:26:16+03:00"}
 {"level":"info","msg":"Starting log streaming","time":"2021-03-20T20:26:16+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-20T20:48:17+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-20T20:48:17+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-20T20:48:21+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-20T20:48:24+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-20T20:48:27+03:00"}
+{"level":"warning","msg":"DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2021-03-20T20:48:38+03:00"}
+{"level":"warning","msg":"DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2021-03-20T20:48:38+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-20T21:03:23+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-20T21:03:23+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-20T21:03:23+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-20T21:03:23+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-20T21:03:26+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-20T21:03:26+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-20T21:03:32+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-20T21:03:32+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-20T21:03:38+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-20T21:03:38+03:00"}
+{"level":"warning","msg":"Pod default/my-app-6d9ff857dd-rkcdn has critical status: ErrImagePull. DevSpace will continue waiting, but this operation might timeout","time":"2021-03-20T21:05:58+03:00"}
+{"level":"info","msg":"Done building image leventogut/my-app-nginx:QyPvyWg (my_app-nginx)","time":"2021-03-20T21:09:01+03:00"}
+{"level":"info","msg":"Done building image leventogut/my-app-php:VJLDsKN (my_app-php)","time":"2021-03-20T21:09:59+03:00"}
+{"level":"info","msg":"Successfully built 2 images","time":"2021-03-20T21:09:59+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-20T21:13:34+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-20T21:13:34+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-20T21:13:35+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-20T21:13:35+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 2)","time":"2021-03-20T21:13:39+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-20T21:13:39+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-mysql","time":"2021-03-20T21:13:39+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 2)","time":"2021-03-20T21:13:52+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-20T21:13:52+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-qmf7s)","time":"2021-03-20T21:13:56+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-20T21:13:56+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-qmf7s)","time":"2021-03-20T21:14:03+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-qmf7s)","time":"2021-03-20T21:14:11+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-20T21:14:11+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-20T21:14:11+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-20T21:27:40+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-20T21:27:40+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-20T21:27:43+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-20T21:27:45+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-20T21:27:47+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-20T21:27:52+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-20T21:27:52+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-20T21:27:52+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-20T21:27:52+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-20T21:27:55+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-20T21:27:55+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-20T21:28:00+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-20T21:28:00+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-20T21:28:06+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-20T21:28:06+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-thdxm)","time":"2021-03-20T21:28:08+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-20T21:28:08+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-thdxm)","time":"2021-03-20T21:28:12+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-thdxm)","time":"2021-03-20T21:28:15+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-20T21:28:15+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-20T21:28:15+03:00"}
+{"level":"fatal","msg":"Automatically exit DevSpace, because the user is inactive for 3h0m7.630735418s. To disable automatic exiting, run with --inactivity-timeout=0","time":"2021-03-21T00:41:23+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T01:45:13+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T01:45:13+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T01:45:13+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T01:45:13+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T01:45:14+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T01:45:19+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T01:45:19+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-redis","time":"2021-03-21T01:45:20+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-thdxm)","time":"2021-03-21T01:45:22+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T01:45:22+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-thdxm)","time":"2021-03-21T01:45:24+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-thdxm)","time":"2021-03-21T01:45:27+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T01:45:27+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T01:45:27+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:03:03+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:03:03+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T02:03:06+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T02:03:08+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T02:03:11+03:00"}
+{"level":"warning","msg":"DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2021-03-21T02:03:27+03:00"}
+{"level":"warning","msg":"DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2021-03-21T02:03:27+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:27+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:04:27+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:28+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:04:28+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:28+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:04:28+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:28+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:37+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:04:37+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:38+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:43+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:04:43+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:43+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:04:43+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:47+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:04:47+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:48+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:57+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:04:57+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:58+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:04:58+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:58+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:04:58+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:04:58+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:05:07+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:05:07+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:05:08+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:05:13+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:05:13+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:05:13+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:05:13+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:05:17+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:05:17+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: Get \"https://kubernetes.docker.internal:6443/api/v1/namespaces/default/pods\": net/http: TLS handshake timeout","time":"2021-03-21T02:05:18+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:34+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:05:34+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:34+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:34+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:34+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:05:34+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:05:34+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:44+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:44+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:05:44+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:49+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:05:49+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:49+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:05:49+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:54+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:05:54+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:05:54+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:06:04+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:06:04+03:00"}
+{"level":"error","msg":"Error restarting sync: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:06:04+03:00"}
+{"level":"error","msg":"Will try again in 5 seconds","time":"2021-03-21T02:06:04+03:00"}
+{"level":"error","msg":"Error restarting port-forwarding: Error selecting pod: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:06:04+03:00"}
+{"level":"error","msg":"Will try again in 3 seconds","time":"2021-03-21T02:06:04+03:00"}
+{"level":"error","msg":"Error gathering target pods: pods by image name: list pods: an error on the server (\"\") has prevented the request from succeeding (get pods)","time":"2021-03-21T02:06:04+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:06:55+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:06:55+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:06:56+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:06:56+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:06:59+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-21T02:06:59+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:07:04+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T02:07:04+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:07:11+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-21T02:07:11+03:00"}
+{"level":"fatal","msg":"Error forwarding ports: unable to listen on any of the requested ports: [{8080 80}]","time":"2021-03-21T02:07:14+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:07:27+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:07:27+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:07:27+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:07:27+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T02:07:28+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-mysql","time":"2021-03-21T02:07:28+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-redis","time":"2021-03-21T02:07:29+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-gk479)","time":"2021-03-21T02:07:31+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T02:07:31+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-gk479)","time":"2021-03-21T02:07:33+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-gk479)","time":"2021-03-21T02:07:35+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T02:07:35+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T02:07:35+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:15:32+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:15:32+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T02:15:35+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T02:15:38+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T02:15:40+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:15:45+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:15:45+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:15:45+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:15:45+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:15:48+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-21T02:15:48+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:15:53+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T02:15:53+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:15:58+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-21T02:15:58+03:00"}
+{"level":"fatal","msg":"Error forwarding ports: unable to listen on any of the requested ports: [{8080 80}]","time":"2021-03-21T02:16:00+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:16:10+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:16:10+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:16:10+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:16:10+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T02:16:11+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-mysql","time":"2021-03-21T02:16:11+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-redis","time":"2021-03-21T02:16:11+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-mh9jm)","time":"2021-03-21T02:16:13+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T02:16:13+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-mh9jm)","time":"2021-03-21T02:16:15+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-mh9jm)","time":"2021-03-21T02:16:18+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T02:16:18+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T02:16:18+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:19:57+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:19:57+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:19:58+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:19:58+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T02:19:58+03:00"}
+{"level":"fatal","msg":"error deploying: Error deploying my-app-mysql: Unable to deploy helm chart: error during 'helm upgrade my-app-mysql bitnami/mysql --namespace default --values /var/folders/3h/tq577p717mdccgjpcgtcvqv80000gn/T/324436749 --install --version 8.4.4 --kube-context docker-desktop': Error: UPGRADE FAILED: template: mysql/templates/NOTES.txt:72:8: executing \"mysql/templates/NOTES.txt\" at \u003cinclude \"common.errors.upgrade.passwords.empty\" (dict \"validationErrors\" $mysqlPasswordValidationErrors \"context\" $)\u003e: error calling include: template: mysql/charts/common/templates/_errors.tpl:18:48: executing \"common.errors.upgrade.passwords.empty\" at \u003cfail\u003e: error calling fail: \nPASSWORDS ERROR: you must provide your current passwords when upgrade the release\n    'auth.rootPassword' must not be empty, please add '--set auth.rootPassword=$MYSQL_ROOT_PASSWORD' to the command. To get the current value:\n\n        export MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace \"default\" my-app-mysql -o jsonpath=\"{.data.mysql-root-password}\" | base64 --decode)\n\n =\u003e exit status 1\nRun `\u001b[1;37mdevspace purge -d my-app-mysql\u001b[0m` and `\u001b[1;37mdevspace deploy\u001b[0m` to recreate the chart","time":"2021-03-21T02:20:02+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:20:56+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:20:56+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T02:20:58+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T02:21:00+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T02:21:02+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:21:06+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:21:06+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:21:06+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:21:06+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:21:08+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-21T02:21:08+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:21:12+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T02:21:12+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:21:18+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-21T02:21:18+03:00"}
+{"level":"fatal","msg":"Error forwarding ports: unable to listen on any of the requested ports: [{8080 80}]","time":"2021-03-21T02:21:20+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:22:01+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:22:01+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:22:02+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:22:02+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T02:22:02+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-mysql","time":"2021-03-21T02:22:03+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-redis","time":"2021-03-21T02:22:06+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-n6cjz)","time":"2021-03-21T02:22:09+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T02:22:09+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-n6cjz)","time":"2021-03-21T02:22:11+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-n6cjz)","time":"2021-03-21T02:22:13+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T02:22:13+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T02:22:13+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:26:33+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:26:33+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T02:26:35+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T02:26:38+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T02:26:39+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:26:44+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:26:44+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:26:45+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:26:45+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:26:47+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-21T02:26:47+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:26:52+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T02:26:52+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:26:57+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-21T02:26:57+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-blp75)","time":"2021-03-21T02:26:59+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T02:26:59+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-blp75)","time":"2021-03-21T02:27:02+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-blp75)","time":"2021-03-21T02:27:05+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T02:27:05+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T02:27:05+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:30:13+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:30:13+03:00"}
+{"level":"fatal","msg":"convert config: Error loading config: yaml: unmarshal errors:\n  line 16: field env not found in type latest.HelmConfig","time":"2021-03-21T02:30:13+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:31:49+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:31:49+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T02:31:52+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T02:31:54+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T02:31:57+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:32:42+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:32:42+03:00"}
+{"level":"warning","msg":"Error deleting deployment my-app-redis: \u003cnil\u003e","time":"2021-03-21T02:32:42+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T02:32:42+03:00"}
+{"level":"warning","msg":"Error deleting deployment my-app-mysql: \u003cnil\u003e","time":"2021-03-21T02:32:42+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T02:32:42+03:00"}
+{"level":"warning","msg":"Error deleting deployment my-app: \u003cnil\u003e","time":"2021-03-21T02:32:42+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T02:32:42+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:32:45+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:32:45+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:32:45+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:32:45+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:32:48+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-21T02:32:48+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:32:52+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T02:32:52+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:32:55+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-21T02:32:55+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-2gzpk)","time":"2021-03-21T02:32:58+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T02:32:58+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-2gzpk)","time":"2021-03-21T02:33:01+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-2gzpk)","time":"2021-03-21T02:33:04+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T02:33:04+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T02:33:04+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:40:27+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:40:27+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T02:40:30+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T02:40:32+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T02:40:34+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:40:42+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:40:42+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:40:42+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:40:42+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:40:45+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-21T02:40:45+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:40:49+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T02:40:49+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:40:54+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-21T02:40:54+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-dz95m)","time":"2021-03-21T02:40:56+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T02:40:56+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-dz95m)","time":"2021-03-21T02:40:59+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-dz95m)","time":"2021-03-21T02:41:02+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T02:41:02+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T02:41:02+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:51:05+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:51:05+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T02:51:08+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T02:51:11+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T02:51:13+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:51:20+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:51:20+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:51:21+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:51:21+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:51:24+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-21T02:51:24+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:51:29+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T02:51:29+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:51:35+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-21T02:51:35+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-4gz29)","time":"2021-03-21T02:51:37+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T02:51:37+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-4gz29)","time":"2021-03-21T02:51:40+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-4gz29)","time":"2021-03-21T02:51:44+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T02:51:44+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T02:51:44+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:53:36+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:53:36+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T02:53:39+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T02:53:41+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T02:53:44+03:00"}
+{"level":"warning","msg":"DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2021-03-21T02:53:54+03:00"}
+{"level":"warning","msg":"DevSpace still couldn't find any Pods that match the selector. DevSpace will continue waiting, but this operation might timeout","time":"2021-03-21T02:53:54+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T02:54:19+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T02:54:19+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T02:54:19+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T02:54:19+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:54:22+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-21T02:54:22+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:54:25+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T02:54:25+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T02:54:29+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-21T02:54:29+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-4fqlq)","time":"2021-03-21T02:54:32+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T02:54:32+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-4fqlq)","time":"2021-03-21T02:54:35+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-4fqlq)","time":"2021-03-21T02:54:38+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T02:54:38+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T02:54:38+03:00"}

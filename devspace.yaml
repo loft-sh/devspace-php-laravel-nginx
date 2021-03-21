@@ -31,8 +31,11 @@ deployments:
       name: "bitnami/mysql"
       version: "8.4.4"
     values:
-      mysqlDatabase: ${MYSQL_DATABASE}
-      mysqlRootPassword: ${MYSQL_ROOT_PASSWORD}
+      auth.rootPassword: ${MYSQL_ROOT_PASSWORD}
+      auth.database: ${MYSQL_DATABASE}
+      auth.username: ${MYSQL_USER}
+      auth.password: ${MYSQL_PASSWORD}
+
 - name: my-app-redis
   helm:
     componentChart: false
