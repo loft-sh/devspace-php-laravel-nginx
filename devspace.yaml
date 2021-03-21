@@ -46,6 +46,7 @@ deployments:
       networkPolicy.enabled: true
       networkPolicy.allowExternal: true
       password: ${REDIS_PASSWORD}
+      cluster.enabled: false
 dev:
   ports:
   - imageName: my_app-nginx
@@ -94,3 +95,4 @@ profiles:
 commands:
 - name: php
   command: devspace enter php
+vars:

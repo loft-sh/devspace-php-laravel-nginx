@@ -782,3 +782,73 @@
 {"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-4fqlq)","time":"2021-03-21T02:54:38+03:00"}
 {"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T02:54:38+03:00"}
 {"level":"info","msg":"Starting log streaming","time":"2021-03-21T02:54:38+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:07:59+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:07:59+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T03:07:59+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T03:07:59+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T03:08:00+03:00"}
+{"level":"fatal","msg":"error deploying: Error deploying my-app-mysql: Unable to deploy helm chart: error during 'helm upgrade my-app-mysql bitnami/mysql --namespace default --values /var/folders/3h/tq577p717mdccgjpcgtcvqv80000gn/T/407246784 --install --version 8.4.4 --kube-context docker-desktop': Error: UPGRADE FAILED: template: mysql/templates/NOTES.txt:72:8: executing \"mysql/templates/NOTES.txt\" at \u003cinclude \"common.errors.upgrade.passwords.empty\" (dict \"validationErrors\" $mysqlPasswordValidationErrors \"context\" $)\u003e: error calling include: template: mysql/charts/common/templates/_errors.tpl:18:48: executing \"common.errors.upgrade.passwords.empty\" at \u003cfail\u003e: error calling fail: \nPASSWORDS ERROR: you must provide your current passwords when upgrade the release\n    'auth.rootPassword' must not be empty, please add '--set auth.rootPassword=$MYSQL_ROOT_PASSWORD' to the command. To get the current value:\n\n        export MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace \"default\" my-app-mysql -o jsonpath=\"{.data.mysql-root-password}\" | base64 --decode)\n\n =\u003e exit status 1\nRun `\u001b[1;37mdevspace purge -d my-app-mysql\u001b[0m` and `\u001b[1;37mdevspace deploy\u001b[0m` to recreate the chart","time":"2021-03-21T03:08:04+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:10:24+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:10:24+03:00"}
+{"level":"fatal","msg":"parse variables: Error loading config: yaml: unmarshal errors:\n  line 1: cannot unmarshal !!map into []*latest.Variable","time":"2021-03-21T03:10:24+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:10:32+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:10:32+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T03:10:32+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T03:10:32+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T03:10:32+03:00"}
+{"level":"fatal","msg":"error deploying: Error deploying my-app-mysql: Unable to deploy helm chart: error during 'helm upgrade my-app-mysql bitnami/mysql --namespace default --values /var/folders/3h/tq577p717mdccgjpcgtcvqv80000gn/T/344209675 --install --version 8.4.4 --kube-context docker-desktop': Error: UPGRADE FAILED: template: mysql/templates/NOTES.txt:72:8: executing \"mysql/templates/NOTES.txt\" at \u003cinclude \"common.errors.upgrade.passwords.empty\" (dict \"validationErrors\" $mysqlPasswordValidationErrors \"context\" $)\u003e: error calling include: template: mysql/charts/common/templates/_errors.tpl:18:48: executing \"common.errors.upgrade.passwords.empty\" at \u003cfail\u003e: error calling fail: \nPASSWORDS ERROR: you must provide your current passwords when upgrade the release\n    'auth.rootPassword' must not be empty, please add '--set auth.rootPassword=$MYSQL_ROOT_PASSWORD' to the command. To get the current value:\n\n        export MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace \"default\" my-app-mysql -o jsonpath=\"{.data.mysql-root-password}\" | base64 --decode)\n\n =\u003e exit status 1\nRun `\u001b[1;37mdevspace purge -d my-app-mysql\u001b[0m` and `\u001b[1;37mdevspace deploy\u001b[0m` to recreate the chart","time":"2021-03-21T03:10:36+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:15:53+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:15:53+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T03:15:55+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T03:15:57+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app","time":"2021-03-21T03:15:59+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:16:26+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:16:26+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T03:16:27+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T03:16:27+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T03:16:29+03:00"}
+{"level":"info","msg":"Successfully deployed my-app with helm","time":"2021-03-21T03:16:29+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T03:16:33+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T03:16:33+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T03:16:38+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-redis with helm","time":"2021-03-21T03:16:38+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-qfsb4)","time":"2021-03-21T03:16:40+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T03:16:40+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-qfsb4)","time":"2021-03-21T03:16:44+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-qfsb4)","time":"2021-03-21T03:16:47+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T03:16:47+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T03:16:47+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:22:30+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:22:30+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T03:22:30+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T03:22:30+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T03:22:30+03:00"}
+{"level":"fatal","msg":"error deploying: Error deploying my-app-mysql: Unable to deploy helm chart: error during 'helm upgrade my-app-mysql bitnami/mysql --namespace default --values /var/folders/3h/tq577p717mdccgjpcgtcvqv80000gn/T/331934525 --install --version 8.4.4 --kube-context docker-desktop': Error: UPGRADE FAILED: template: mysql/templates/NOTES.txt:72:8: executing \"mysql/templates/NOTES.txt\" at \u003cinclude \"common.errors.upgrade.passwords.empty\" (dict \"validationErrors\" $mysqlPasswordValidationErrors \"context\" $)\u003e: error calling include: template: mysql/charts/common/templates/_errors.tpl:18:48: executing \"common.errors.upgrade.passwords.empty\" at \u003cfail\u003e: error calling fail: \nPASSWORDS ERROR: you must provide your current passwords when upgrade the release\n    'auth.rootPassword' must not be empty, please add '--set auth.rootPassword=$MYSQL_ROOT_PASSWORD' to the command. To get the current value:\n\n        export MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace \"default\" my-app-mysql -o jsonpath=\"{.data.mysql-root-password}\" | base64 --decode)\n\n =\u003e exit status 1\nRun `\u001b[1;37mdevspace purge -d my-app-mysql\u001b[0m` and `\u001b[1;37mdevspace deploy\u001b[0m` to recreate the chart","time":"2021-03-21T03:22:34+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:22:44+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:22:44+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-mysql","time":"2021-03-21T03:22:46+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:22:51+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:22:51+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:23:08+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:23:08+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T03:23:09+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T03:23:09+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T03:23:09+03:00"}
+{"level":"info","msg":"Deployed helm chart (Release revision: 1)","time":"2021-03-21T03:23:13+03:00"}
+{"level":"info","msg":"Successfully deployed my-app-mysql with helm","time":"2021-03-21T03:23:13+03:00"}
+{"level":"info","msg":"Skipping deployment my-app-redis","time":"2021-03-21T03:23:14+03:00"}
+{"level":"info","msg":"Port forwarding started on 8080:80 (default/my-app-75dc6d7d77-qfsb4)","time":"2021-03-21T03:23:16+03:00"}
+{"level":"info","msg":"DevSpace UI available at: \u001b[1;37mhttp://localhost:8090\u001b[0m","time":"2021-03-21T03:23:16+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-qfsb4)","time":"2021-03-21T03:23:18+03:00"}
+{"level":"info","msg":"Sync started on /Users/logut/dev/php-laravel-nginx-devspace \u003c-\u003e . (Pod: default/my-app-75dc6d7d77-qfsb4)","time":"2021-03-21T03:23:20+03:00"}
+{"level":"info","msg":"Opening 'http://localhost:8080' as soon as application will be started (timeout: 4m0s)","time":"2021-03-21T03:23:20+03:00"}
+{"level":"info","msg":"Starting log streaming","time":"2021-03-21T03:23:20+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:25:26+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:25:26+03:00"}
+{"level":"info","msg":"Successfully deleted deployment my-app-redis","time":"2021-03-21T03:25:28+03:00"}
+{"level":"info","msg":"Using namespace '\u001b[1;37mdefault\u001b[0m'","time":"2021-03-21T03:25:31+03:00"}
+{"level":"info","msg":"Using kube context '\u001b[1;37mdocker-desktop\u001b[0m'","time":"2021-03-21T03:25:31+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-nginx'","time":"2021-03-21T03:25:32+03:00"}
+{"level":"info","msg":"Skip building image 'my_app-php'","time":"2021-03-21T03:25:32+03:00"}
+{"level":"info","msg":"Skipping deployment my-app","time":"2021-03-21T03:25:32+03:00"}
+{"level":"fatal","msg":"error deploying: Error deploying my-app-mysql: Unable to deploy helm chart: error during 'helm upgrade my-app-mysql bitnami/mysql --namespace default --values /var/folders/3h/tq577p717mdccgjpcgtcvqv80000gn/T/957658621 --install --version 8.4.4 --kube-context docker-desktop': Error: UPGRADE FAILED: template: mysql/templates/NOTES.txt:72:8: executing \"mysql/templates/NOTES.txt\" at \u003cinclude \"common.errors.upgrade.passwords.empty\" (dict \"validationErrors\" $mysqlPasswordValidationErrors \"context\" $)\u003e: error calling include: template: mysql/charts/common/templates/_errors.tpl:18:48: executing \"common.errors.upgrade.passwords.empty\" at \u003cfail\u003e: error calling fail: \nPASSWORDS ERROR: you must provide your current passwords when upgrade the release\n    'auth.rootPassword' must not be empty, please add '--set auth.rootPassword=$MYSQL_ROOT_PASSWORD' to the command. To get the current value:\n\n        export MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace \"default\" my-app-mysql -o jsonpath=\"{.data.mysql-root-password}\" | base64 --decode)\n\n =\u003e exit status 1\nRun `\u001b[1;37mdevspace purge -d my-app-mysql\u001b[0m` and `\u001b[1;37mdevspace deploy\u001b[0m` to recreate the chart","time":"2021-03-21T03:25:36+03:00"}

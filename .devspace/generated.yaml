@@ -15,10 +15,10 @@ profiles:
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
         helmReleaseRevision: "1"
       my-app-mysql:
-        deploymentConfigHash: b7ca52c3aa64c0021f5f573eb239cb348573bda8d2107cf9d2904322963128d8
+        deploymentConfigHash: 03458f5c3b83b0c6241c5acca5ee1379f1830425d2e32ad8d757589357436893
         helmReleaseRevision: "1"
       my-app-redis:
-        deploymentConfigHash: f9f86cb099548bbadf2d278299482fdbe261455548510a6dc4d29099cd4a7006
+        deploymentConfigHash: 75dcb8eb9a2a6d2a737679417a6c98508aff098dde05d18675d746e41c48558f
         helmReleaseRevision: "1"
       my-component:
         deploymentConfigHash: d9cda0302a1c263d119241381b75518d38f1f917b9942b9e0a5965d25c274a89
