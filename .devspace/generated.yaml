@@ -1,3 +1,8 @@
+vars:
+  MYSQL_DATABASE: 40Qirrl+PTAclSEm/sDjqt8lEO2AXnFC6JwyDMzMk+absNM=
+  MYSQL_PASSWORD: 0WsgDor9CX6moun6cVfIcLVt+aC7Mjmtoy7i+h9uWnXJ1Gg=
+  MYSQL_USER: o0/xH3zhR5SRaaccLYc3AeyX84GsK0+XiW2VqwJupuYLFqc=
+  REDIS_PASSWORD: UUb7DDbI6S+EhahtzQP26eRBeVp0kPCcDqXZ1uxpgt9q2OE=
 varsEncrypted: true
 profiles:
   "":
@@ -15,7 +20,7 @@ profiles:
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
         helmReleaseRevision: "1"
       my-app-mysql:
-        deploymentConfigHash: 273cbe65b13067c307e5a0091a0ba42b57d7f5919cf6596bf1fed04a74f47919
+        deploymentConfigHash: bce84a69b9a29d6ffb0a8b67f244de9a635cfcaae5a2e0fc01f9f18f45c7167e
         helmReleaseRevision: "1"
       my-app-redis:
         deploymentConfigHash: eb15632cd4f819375b4228148f9fbacbd0c4d82d942527e6f11195a4d0475089
@@ -27,16 +32,16 @@ profiles:
     images:
       my_app-nginx:
         imageConfigHash: 9ebd524e21bf5588eedf34ba2719f1fcd7b677e96da66aa77d270a414c95d0dd
-        dockerfileHash: 6912c37766cf8541209cdc8ca7dad7421b6d4784a1b3392d83987b4339cac13f
-        contextHash: 2270d5d0d9642b0b8dacc05401b95c1b903e4e1db42519da5c5ec0b9f50aa03e
+        dockerfileHash: 74815bcc06f82d96d7b0ad8554a02a90b870491630a4c588124c6220a4fcfe58
+        contextHash: 92184fa205f8242f447bc51a4d712ae13dba4169d21b2e646626660a3c04f89f
         imageName: leventogut/my-app-nginx
-        tag: QyPvyWg
+        tag: oUcpiYb
       my_app-php:
         imageConfigHash: 669bc8323224442da9d8bd0ad5c0735e2454eabe80f1e31e4ea2f4bc4f3fc7db
-        dockerfileHash: e9db53a4eef8ee8705a7f237a384aef7f37c9aaf5c04e7c8bebf2e10db30c2c4
-        contextHash: 2270d5d0d9642b0b8dacc05401b95c1b903e4e1db42519da5c5ec0b9f50aa03e
+        dockerfileHash: 5ae9f1357a92248d17eed4e6b5d1c0073b3f5dc337ce08b331049724ed159c8c
+        contextHash: 92184fa205f8242f447bc51a4d712ae13dba4169d21b2e646626660a3c04f89f
         imageName: leventogut/my-app-php
-        tag: VJLDsKN
+        tag: RSJhvSH
     lastContext:
       namespace: default
       context: docker-desktop
