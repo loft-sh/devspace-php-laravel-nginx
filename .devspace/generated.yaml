@@ -1,8 +1,8 @@
 vars:
-  MYSQL_DATABASE: 40Qirrl+PTAclSEm/sDjqt8lEO2AXnFC6JwyDMzMk+absNM=
-  MYSQL_PASSWORD: 0WsgDor9CX6moun6cVfIcLVt+aC7Mjmtoy7i+h9uWnXJ1Gg=
-  MYSQL_USER: o0/xH3zhR5SRaaccLYc3AeyX84GsK0+XiW2VqwJupuYLFqc=
-  REDIS_PASSWORD: UUb7DDbI6S+EhahtzQP26eRBeVp0kPCcDqXZ1uxpgt9q2OE=
+  MYSQL_DATABASE: vyrlm9KcZ4jJsB+q3nsZh0F+L4hLBPLi0UljLsMO1dfWkFs=
+  MYSQL_PASSWORD: 2AqqOffj59iV4KfDBQgIqJsbiR6ppF39p3r0cJ5c3DUI6V4=
+  MYSQL_USER: xNbNcAC8EpiI06WsMlmdiCUCZb6uqXnhPR5SptjjLhJLkUw=
+  REDIS_PASSWORD: 7+WEc0PemtT/5uiTzDLVT3d+iqCmyRb5v5BArspDzPgl/uw=
 varsEncrypted: true
 profiles:
   "":
@@ -20,10 +20,10 @@ profiles:
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
         helmReleaseRevision: "1"
       my-app-mysql:
-        deploymentConfigHash: bce84a69b9a29d6ffb0a8b67f244de9a635cfcaae5a2e0fc01f9f18f45c7167e
+        deploymentConfigHash: e2c08da46b88ed95ecdde3114b7eb87c33ce303daba254d9e2990c1e47f54608
         helmReleaseRevision: "1"
       my-app-redis:
-        deploymentConfigHash: eb15632cd4f819375b4228148f9fbacbd0c4d82d942527e6f11195a4d0475089
+        deploymentConfigHash: f7e58ea648568129fe49207e22d92b2f68cfa7e74edfbbbe7fdfd3cabcb424d6
         helmReleaseRevision: "1"
       my-component:
         deploymentConfigHash: d9cda0302a1c263d119241381b75518d38f1f917b9942b9e0a5965d25c274a89
@@ -32,16 +32,16 @@ profiles:
     images:
       my_app-nginx:
         imageConfigHash: 9ebd524e21bf5588eedf34ba2719f1fcd7b677e96da66aa77d270a414c95d0dd
-        dockerfileHash: 74815bcc06f82d96d7b0ad8554a02a90b870491630a4c588124c6220a4fcfe58
+        dockerfileHash: d6bf8d903424d7c2804363cd4c751d37f2737601ea845c0583869a59aedd4077
         contextHash: 92184fa205f8242f447bc51a4d712ae13dba4169d21b2e646626660a3c04f89f
         imageName: leventogut/my-app-nginx
-        tag: oUcpiYb
+        tag: NXGonud
       my_app-php:
         imageConfigHash: 669bc8323224442da9d8bd0ad5c0735e2454eabe80f1e31e4ea2f4bc4f3fc7db
-        dockerfileHash: 5ae9f1357a92248d17eed4e6b5d1c0073b3f5dc337ce08b331049724ed159c8c
+        dockerfileHash: 6bffc0a97ea3257dc9f15b07f4c192cd3366e5e0e9833637f366ed09b3fc14fd
         contextHash: 92184fa205f8242f447bc51a4d712ae13dba4169d21b2e646626660a3c04f89f
         imageName: leventogut/my-app-php
-        tag: RSJhvSH
+        tag: zrUErKz
     lastContext:
       namespace: default
       context: docker-desktop

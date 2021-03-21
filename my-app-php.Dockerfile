@@ -8,7 +8,7 @@ RUN pecl install redis \
     && docker-php-ext-enable redis xdebug
 
 # Install MySQL extensions
-RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+RUN docker-php-ext-install mysqli pdo pdo_mysql dom mbstring && docker-php-ext-enable pdo_mysql dom mbstring
 
 RUN apt update \
  && apt install -y git zip \
