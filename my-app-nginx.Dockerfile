@@ -3,7 +3,7 @@ FROM nginx:1.19
 WORKDIR /var/www/html
 
 RUN apt update \
- && apt install -y git zip php-cli\
+ && apt install -y git zip php-cli php-dom php-mbstring\
  && curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install composer dependencies (optional)
