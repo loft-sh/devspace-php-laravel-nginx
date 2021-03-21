@@ -1,8 +1,9 @@
 vars:
-  MYSQL_DATABASE: qlrXdF0wV5EhL7Tq7U4f/FDInUZQ3f6ipno5NcE+ImdpfKE=
-  MYSQL_PASSWORD: sgzObj0J3IiEYYpvBrbddqHwnKt8zS20r35BLuYPtBjmT08=
-  MYSQL_USER: 3A642vWygww/2//IDt3BM1QpqYPrk6P6hV9i1bvmG6Zv1J0=
-  REDIS_PASSWORD: pgrAg4+225AWTLKwPehoHEKinF3YRS6pbS5c7MhTqPPMoBE=
+  MYSQL_DATABASE: U3Xuhdk0zW7Xxg0MN1TNRMKYelLMS8aytR2eoXjCwhiDtsk=
+  MYSQL_PASSWORD: b15N2EmcSjmW74brRIMWirrqpsnIz2e3n71T30txdZO8s1s=
+  MYSQL_ROOT_PASSWORD: L22pVYk+CRse0pBTF5PpsLFZ/aTA+pNb1Apmtbdc3L6x
+  MYSQL_USER: MG+KWYOIsi1QAy4+KAyHd03JT2CprxOEhtjSpU7+Ttt4aQg=
+  REDIS_PASSWORD: NmmPiWgBwLX0Xv6gV2XRnO98CAZ91NNw4Ohi2KksNnoineo=
 varsEncrypted: true
 profiles:
   "":
@@ -32,16 +33,16 @@ profiles:
     images:
       my_app-nginx:
         imageConfigHash: 9ebd524e21bf5588eedf34ba2719f1fcd7b677e96da66aa77d270a414c95d0dd
-        dockerfileHash: e0a5c45911dc2621f9888f43180d4fcf36a7d36c8c1cd9b4517da6348123cc17
-        contextHash: 4ce181c0adfecf69b715050e35087fde91bcdf70271fd235785fefc382458610
+        dockerfileHash: 9edf971a9a6bc4ba9ae49f8de5441988a6ddf70e3d00dc84dceb8c531eed852b
+        contextHash: 083fe376fe43b7dd39b7a0a8f2db2c53b1a05613078614b0227c25e85179bdda
         imageName: leventogut/my-app-nginx
-        tag: jKYcplB
+        tag: dFsekeq
       my_app-php:
         imageConfigHash: 669bc8323224442da9d8bd0ad5c0735e2454eabe80f1e31e4ea2f4bc4f3fc7db
-        dockerfileHash: ccf5864d204a76fdc91781904e40b516c5d029a378314d57de91e9517bd64dc6
-        contextHash: 4ce181c0adfecf69b715050e35087fde91bcdf70271fd235785fefc382458610
+        dockerfileHash: 825cd9128e683b371fe4643834a282ff1eec1729152158bd37e094c2bfa3b575
+        contextHash: 083fe376fe43b7dd39b7a0a8f2db2c53b1a05613078614b0227c25e85179bdda
         imageName: leventogut/my-app-php
-        tag: YeJfuvM
+        tag: aAVUSrv
     lastContext:
       namespace: default
       context: docker-desktop

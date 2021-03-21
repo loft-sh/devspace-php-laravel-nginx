@@ -74,6 +74,7 @@ dev:
     - Dockerfile
     - "*.Dockerfile"
     - devspace.yaml
+    - vendor/*
     onUpload:
       restartContainer: true
 profiles:
