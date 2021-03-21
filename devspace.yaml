@@ -31,10 +31,11 @@ deployments:
       name: "bitnami/mysql"
       version: "8.4.4"
     values:
-      auth.rootPassword: ${MYSQL_ROOT_PASSWORD}
-      auth.database: ${MYSQL_DATABASE}
-      auth.username: ${MYSQL_USER}
-      auth.password: ${MYSQL_PASSWORD}
+      auth:
+        rootPassword: ${MYSQL_ROOT_PASSWORD}
+        database: ${MYSQL_DATABASE}
+        username: ${MYSQL_USER}
+        password: ${MYSQL_PASSWORD}
 
 - name: my-app-redis
   helm:
@@ -43,10 +44,12 @@ deployments:
       name: "bitnami/redis"
       version: "12.8.3"
     values:
-      networkPolicy.enabled: true
-      networkPolicy.allowExternal: true
+      networkPolicy:
+        enabled: true
+        allowExternal: true
       password: ${REDIS_PASSWORD}
-      cluster.enabled: false
+      cluster:
+        enabled: false
 dev:
   ports:
   - imageName: my_app-nginx
