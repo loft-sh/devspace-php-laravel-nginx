@@ -36,7 +36,6 @@ deployments:
         database: ${MYSQL_DATABASE}
         username: ${MYSQL_USER}
         password: ${MYSQL_PASSWORD}
-
 - name: my-app-redis
   helm:
     componentChart: false
