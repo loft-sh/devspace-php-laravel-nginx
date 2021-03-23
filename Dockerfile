@@ -27,8 +27,10 @@ RUN composer install --no-dev --no-interaction
 # Ensure file ownership for source code files
 RUN chown -R www-data:www-data .
 
+RUN touch /var/www/html/storage/logs/laravel.log
 RUN chmod 777 /var/www/html/storage/logs/
 RUN chmod 777 /var/www/html/storage/logs/*
+
 
 
 CMD ["php-fpm"]

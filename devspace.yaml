@@ -1,47 +1,58 @@
 version: v1beta9
 images:
-  my_app-nginx:
-    image: leventogut/my-app-nginx
+  php:
+    image: ${PHP_IMAGE}
     preferSyncOverRebuild: true
     injectRestartHelper: true
     appendDockerfileInstructions:
     - USER root
-    dockerfile: my-app-nginx.Dockerfile
-  my_app-php:
-    image: leventogut/my-app-php
-    preferSyncOverRebuild: true
-    injectRestartHelper: true
-    appendDockerfileInstructions:
-    - USER root
-    dockerfile: my-app-php.Dockerfile
+    dockerfile: Dockerfile
 deployments:
-- name: my-app
+- name: ${DEPLOYMENT_NAME}
   helm:
     componentChart: true
     values:
       containers:
-      - name: my-app-nginx
-        image: leventogut/my-app-nginx
-      - name: my-app-php
-        image: leventogut/my-app-php
-- name: my-app-mysql
+      - name: nginx
+        image: ${NGINX_IMAGE}
+        volumeMounts:
+        - containerPath: /etc/nginx/nginx.conf
+          volume:
+            name: nginx-config
+            subPath: nginx.conf
+            readOnly: true
+        command:
+        - "/bin/sh"
+        args:
+        - "-c"
+        - "mkdir -p /var/www/html/public && touch /var/www/html/public/index.php && nginx -g 'daemon off;'"
+      - name: php
+        image: ${PHP_IMAGE}
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: nginx-config
+      labels:
+        app: nginx
+        portforward: true
+- name: mysql
   helm:
     componentChart: false
     chart:
-      name: "bitnami/mysql"
-      version: "8.4.4"
+      name: ${MYSQL_CHART}
+      version: ${MYSQL_CHART_VERSION}
     values:
       auth:
         rootPassword: ${MYSQL_ROOT_PASSWORD}
         database: ${MYSQL_DATABASE}
         username: ${MYSQL_USER}
         password: ${MYSQL_PASSWORD}
-- name: my-app-redis
+- name: redis
   helm:
     componentChart: false
     chart:
-      name: "bitnami/redis"
-      version: "12.8.3"
+      name: ${REDIS_CHART}
+      version: ${REDIS_CHART_VERSION}
     values:
       networkPolicy:
         enabled: true
@@ -51,23 +62,16 @@ deployments:
         enabled: false
 dev:
   ports:
-  - imageName: my_app-nginx
+  - labelSelector:
+      app: nginx
+      portforward: true
     forward:
     - port: 8080
       remotePort: 80
   open:
   - url: http://localhost:8080
   sync:
-  - imageName: my_app-nginx
-    excludePaths:
-    - .git/
-    uploadExcludePaths:
-    - Dockerfile
-    - "*.Dockerfile"
-    - devspace.yaml
-    onUpload:
-      restartContainer: true
-  - imageName: my_app-php
+  - imageName: php
     excludePaths:
     - .git/
     uploadExcludePaths:

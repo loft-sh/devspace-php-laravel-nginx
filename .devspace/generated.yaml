@@ -1,13 +1,17 @@
 vars:
-  MYSQL_DATABASE: XL7fFz5qeBptwjMerTct1o53HlmvUX8LHGjfQhqw/VVPHis=
-  MYSQL_PASSWORD: MjpGdClB8CDuRJ2ByAC5YnENYmMoo6nx+I0foK8r+Pz1JQA=
-  MYSQL_ROOT_PASSWORD: Am1jpIGqbGX+DfNz0bfaXrhU4MXXmBAP10XUBZB4qSdq
-  MYSQL_USER: Ii5o8vbahMJL1Zit+d4mCQWwy5aRDT7UDUvgHocSE6+FTL4=
-  REDIS_PASSWORD: zGrFNFCOjCBtfRieu78PQePee+AWYnmt3muJX/z2B1Wz1KI=
+  MYSQL_DATABASE: awMl3iorrIzpqaaVDHHgFDYJF74qFhdihfqmhCIoEsEI06g=
+  MYSQL_PASSWORD: picUWRQL0OcPVmviVuGkVn+MGg/Kh6hMyueDrWSvGZI/Bk0=
+  MYSQL_ROOT_PASSWORD: eFtRS0PyoyJUcY+nWLtibYFU3WgkHbjrHBdu/C/GB6Vr
+  MYSQL_USER: hayejEXkKGGETxC2iFjJbndPZ5aCx2Jv0KI1iCiQTxbFWxY=
+  REDIS_PASSWORD: p4KnXfkQrKCzUmrAN8Gx8kOUaVP70xrGy9H6MITbP/sm/Yo=
 varsEncrypted: true
 profiles:
   "":
     deployments:
+      app:
+        deploymentConfigHash: 349d4598f452a4889cb98afae8d95254561ca385dc027f4c930ad4f7c7b3de85
+        helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
+        helmReleaseRevision: "18"
       my-app:
         deploymentConfigHash: 1fb6fd3fa78957a2bdf60fc74a9a173b116ad9a46143020efcbcbce071d0db0a
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
@@ -30,19 +34,19 @@ profiles:
         deploymentConfigHash: d9cda0302a1c263d119241381b75518d38f1f917b9942b9e0a5965d25c274a89
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
         helmReleaseRevision: "1"
+      mysql:
+        deploymentConfigHash: 2f5e584c6cd321662cf95b2fecb4f702984519d5b09322228407f8568dd4c118
+        helmReleaseRevision: "1"
+      redis:
+        deploymentConfigHash: e86249f84399fc77f53ffd9b4a66289902563239836eb75dc3de027549880fa8
+        helmReleaseRevision: "1"
     images:
-      my_app-nginx:
-        imageConfigHash: 9ebd524e21bf5588eedf34ba2719f1fcd7b677e96da66aa77d270a414c95d0dd
-        dockerfileHash: 345360f4de050acb75fa638506d66194381e525a7ff633e16ed5039098f94382
-        contextHash: 083fe376fe43b7dd39b7a0a8f2db2c53b1a05613078614b0227c25e85179bdda
-        imageName: leventogut/my-app-nginx
-        tag: PpuwVEX
-      my_app-php:
-        imageConfigHash: 669bc8323224442da9d8bd0ad5c0735e2454eabe80f1e31e4ea2f4bc4f3fc7db
-        dockerfileHash: 1909499390171574644bce07e60a10b63672269253f0ee90d322722f2740f18a
-        contextHash: 083fe376fe43b7dd39b7a0a8f2db2c53b1a05613078614b0227c25e85179bdda
-        imageName: leventogut/my-app-php
-        tag: swTCOUi
+      php:
+        imageConfigHash: 84fbc59a09bb917ecc5f8adff89836bc29e3e612df98956b4d398fd623165c14
+        dockerfileHash: 504304071d49bb72c03bf4b86750ffd404417af3ccff231b5ff3d70c9ef17807
+        contextHash: 28c20d6222050e6d3135c9ba3e4bd52fa4e33ff063d374c26cf3dfd6174ce9a1
+        imageName: leventogut/php
+        tag: RgbINfi
     lastContext:
       namespace: default
       context: docker-desktop
