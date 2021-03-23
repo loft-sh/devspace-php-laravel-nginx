@@ -108,3 +108,18 @@ commands:
 - name: php
   command: devspace enter php
 vars:
+hooks:
+- command: "/bin/sh"
+  args:
+    - "-c"
+    - "kubectl create configmap nginx-config --from-file=./deploy/nginx.conf"
+  when:
+    before:
+      deployments: ${APP_DEPLOYMENT_NAME}
+- command: "/bin/sh"
+  args:
+    - "-c"
+    - "kubectl delete configmap nginx-config"
+  when:   
+    after:
+      purgeDeployments: ${APP_DEPLOYMENT_NAME}
