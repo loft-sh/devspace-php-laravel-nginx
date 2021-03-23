@@ -28,6 +28,11 @@ deployments:
         - "mkdir -p /var/www/html/public && touch /var/www/html/public/index.php && nginx -g 'daemon off;'"
       - name: php
         image: ${PHP_IMAGE}
+        command:
+        - "/bin/sh"
+        args:
+        - "-c"
+        - "php /var/www/html/artisan migrate && php-fpm"
       volumes:
       - name: nginx-config
         configMap:
