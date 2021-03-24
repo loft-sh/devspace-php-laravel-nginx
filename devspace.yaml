@@ -112,7 +112,7 @@ hooks:
 - command: "/bin/sh"
   args:
     - "-c"
-    - "kubectl create configmap nginx-config --from-file=./deploy/nginx.conf"
+    - "kubectl delete configmap nginx-config || true; kubectl create configmap nginx-config --from-file=./deploy/nginx.conf"
   when:
     before:
       deployments: ${APP_DEPLOYMENT_NAME}
