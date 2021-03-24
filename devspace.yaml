@@ -37,7 +37,7 @@ deployments:
         - "/bin/sh"
         args:
         - "-c"
-        - "npm run dev && php /var/www/html/artisan migrate && php-fpm"
+        - "php /var/www/html/artisan migrate && php-fpm"
         volumeMounts:
         - containerPath: /shared
           volume:

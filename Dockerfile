@@ -34,10 +34,13 @@ RUN chmod 777 /var/www/html/storage/logs/*
 
 # Install nodejs and npm
 RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
-RUN apt-get install -y nodejs
+RUN apt update
+RUN apt install -y nodejs
 
 # Install dependencies
+RUN npm install --force -g node
 RUN npm install
+RUN npm run prod
 
 
 CMD ["php-fpm"]
