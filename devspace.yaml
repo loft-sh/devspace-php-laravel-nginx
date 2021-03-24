@@ -18,7 +18,7 @@ deployments:
         volumeMounts:
         - containerPath: /etc/nginx/nginx.conf
           volume:
-            name: nginx-config
+            name: ${NGINX_CONFIG_CONFIGMAP_NAME}
             subPath: nginx.conf
             readOnly: true
         command:
@@ -32,7 +32,7 @@ deployments:
         - "/bin/sh"
         args:
         - "-c"
-        - "php /var/www/html/artisan migrate && php-fpm"
+        - "npm run dev && php /var/www/html/artisan migrate && php-fpm"
       volumes:
       - name: nginx-config
         configMap:
@@ -84,6 +84,7 @@ dev:
     - "*.Dockerfile"
     - devspace.yaml
     - vendor/*
+    - node_modules/*
     onUpload:
       restartContainer: true
 profiles:
@@ -112,14 +113,14 @@ hooks:
 - command: "/bin/sh"
   args:
     - "-c"
-    - "kubectl create configmap nginx-config --from-file=./deploy/nginx.conf"
+    - "kubectl delete configmap ${NGINX_CONFIG_CONFIGMAP_NAME} || true; kubectl create configmap ${NGINX_CONFIG_CONFIGMAP_NAME} --from-file=./deploy/nginx.conf"
   when:
     before:
       deployments: ${APP_DEPLOYMENT_NAME}
 - command: "/bin/sh"
   args:
     - "-c"
-    - "kubectl delete configmap nginx-config"
+    - "kubectl delete configmap ${NGINX_CONFIG_CONFIGMAP_NAME}"
   when:   
     after:
       purgeDeployments: ${APP_DEPLOYMENT_NAME}

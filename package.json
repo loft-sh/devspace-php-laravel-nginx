@@ -23,5 +23,9 @@
         "vue": "^2.5.17",
         "vue-loader": "^15.9.6",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "node-notifier": "^9.0.1",
+        "webpack-notifier": "^1.13.0"
     }
 }
