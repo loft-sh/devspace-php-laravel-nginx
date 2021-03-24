@@ -1,17 +1,17 @@
 vars:
-  MYSQL_DATABASE: r/IAGUlJn1hFBhx55ygnuuOj4TKqWU7q4n2HHkVBTHinOeg=
-  MYSQL_PASSWORD: 3dxh3zCkQCrjW/V5lKiEM6u7SQO2FLso1/6tYdAqIysMGw4=
-  MYSQL_ROOT_PASSWORD: K1EU7IJbYoou5uIYtYUgjhOvNLJJ4TqNkyltdZwTCLg1
-  MYSQL_USER: WIOqlX9GWR0L0znLjcC6ebdMAFoDabdrhaZ06PpksMbdbcM=
-  REDIS_PASSWORD: QHGpcY/BjUjuRriTcTJibdsVNt/tw8zGVPuCIQ3S4tnw3Fc=
+  MYSQL_DATABASE: A1u5moiSFnhlAO/nj9rRqii8CNdYSfPirKuwA8XgS/1RxQ4=
+  MYSQL_PASSWORD: lUYZ81AxyDTMSdDFZq0D9k0Ua6GA9M+qWACsdesl/hkNEiA=
+  MYSQL_ROOT_PASSWORD: +h338nEJA5z/ceCN4h/pxb46l7Lznof8/BV7WKjv1UkI
+  MYSQL_USER: SxHdQ4W3xbjifKL7VT/uoL1ERSK4kHfsKGjQS0Q7gZvOvak=
+  REDIS_PASSWORD: Gwbapjj6mfhJUioAWCLPeWOvCBZ4q+vdEB3U6zNuC201Trk=
 varsEncrypted: true
 profiles:
   "":
     deployments:
       app:
-        deploymentConfigHash: 3291a94c25ab57d558506eb32cdd48012dde7344a00bb050704e3679a87a0167
+        deploymentConfigHash: d7b718ead8bcdef706873098bec58790045c23d08d00e55858ae3c9945c6506f
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
-        helmReleaseRevision: "10"
+        helmReleaseRevision: "1"
       my-app:
         deploymentConfigHash: 1fb6fd3fa78957a2bdf60fc74a9a173b116ad9a46143020efcbcbce071d0db0a
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb

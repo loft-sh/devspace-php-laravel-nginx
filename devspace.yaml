@@ -21,6 +21,11 @@ deployments:
             name: ${NGINX_CONFIG_CONFIGMAP_NAME}
             subPath: nginx.conf
             readOnly: true
+        - containerPath: /shared
+          volume:
+            name: ${SHARED_VOLUME_NAME}
+            subPath: /shared
+            readOnly: true
         command:
         - "/bin/sh"
         args:
@@ -33,10 +38,18 @@ deployments:
         args:
         - "-c"
         - "npm run dev && php /var/www/html/artisan migrate && php-fpm"
+        volumeMounts:
+        - containerPath: /shared
+          volume:
+            name: ${SHARED_VOLUME_NAME}
+            subPath: /shared
+            readOnly: false
       volumes:
       - name: nginx-config
         configMap:
           name: nginx-config
+      - name: ${SHARED_VOLUME_NAME}
+        size: ${SHARED_VOLUME_SIZE}
       labels:
         app: nginx
         portforward: true
