@@ -1,17 +1,17 @@
 vars:
-  MYSQL_DATABASE: ilZYmGHIa+7BA+tIoE1A9ZEQqddyS/MHBQRdACeuEYorzmo=
-  MYSQL_PASSWORD: jHg6l1b6eqO+kXQYacgPKLPf7IdHRgWYm20gF2h+1Fx8a38=
-  MYSQL_ROOT_PASSWORD: PPaWEaBxb9JhNRv+vRNn8VBul6zK/34HCfCNpXbLYdGd
-  MYSQL_USER: piHXiQVn7fkqnlx44iOsV5ZvGJ++IJUgckoOHTqEjFMders=
-  REDIS_PASSWORD: MygL2qRS3rAg4PDyXo46gpDZAA1b7690SG7HM4uCUDxX5kg=
+  MYSQL_DATABASE: 80ari1MBCJ9H+JGr2wiff7oiYO2hShSGGDCNUkgSvVKofXE=
+  MYSQL_PASSWORD: 5ilUZPQ31hokgGorpiE7cA+DxgY6wD99BfP/O6UXGWMnVPY=
+  MYSQL_ROOT_PASSWORD: pgCjONzQ0Rjr1fwXztQMd643JATCtg85ZsRY05i4XdhE
+  MYSQL_USER: yiDuoirnuY4nE0p/2LDWj/fYwmcBguktNrkl446tNBioHqs=
+  REDIS_PASSWORD: Hjqd3vgC8DogtCWeJggMYVlK3Uw3IX7bI/mJQbvVz8dNoYE=
 varsEncrypted: true
 profiles:
   "":
     deployments:
       app:
-        deploymentConfigHash: 508657eb18e9069e1c8434afce2393d2fec9224c2bfeb112af73e0f4c4aecde1
+        deploymentConfigHash: 040bc154ec0b327a6ac551d2d96fbb03e3816c109954c6c6874ddb3b3ceebef6
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
-        helmReleaseRevision: "2"
+        helmReleaseRevision: "1"
       my-app:
         deploymentConfigHash: 1fb6fd3fa78957a2bdf60fc74a9a173b116ad9a46143020efcbcbce071d0db0a
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
@@ -37,16 +37,44 @@ profiles:
       mysql:
         deploymentConfigHash: 2f5e584c6cd321662cf95b2fecb4f702984519d5b09322228407f8568dd4c118
         helmReleaseRevision: "1"
+      nginx-config:
+        deploymentConfigHash: ee850e2ab2820505ec850e8045917b20a01e058a5c827542f13c0cdf884c38a6
+        kubectlManifestsHash: c533c3c24bdefc12ecdebe39a3a8c48310c10a36f81352562242de575d41baf6
       redis:
         deploymentConfigHash: e86249f84399fc77f53ffd9b4a66289902563239836eb75dc3de027549880fa8
         helmReleaseRevision: "1"
     images:
       php:
         imageConfigHash: 84fbc59a09bb917ecc5f8adff89836bc29e3e612df98956b4d398fd623165c14
-        dockerfileHash: bcd9aa00a6f519fa570480849f1a26cec66268321bb20e50d46d0a41165d40f8
-        contextHash: f72aa6168257d8c817fe359fe049e58435fdd492bf95cc98566c168a4ef70661
+        dockerfileHash: 52ba86083ac2931613f4484b672d5e20896d1308e2b907f5a0a4760e529c2e53
+        contextHash: f5a82b7774bfa6201dcd932aea33b69030a35a1abdafee95146b7153ee529e44
         imageName: leventogut/php
-        tag: rzqLpJW
+        tag: syeFCzo
+    lastContext:
+      namespace: default
+      context: docker-desktop
+  production:
+    deployments:
+      app:
+        deploymentConfigHash: 824a31a7353117626ae987bc71c0786962324ad35b648bc83e5908e57f679797
+        helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
+        helmReleaseRevision: "12"
+      mysql:
+        deploymentConfigHash: 2f5e584c6cd321662cf95b2fecb4f702984519d5b09322228407f8568dd4c118
+        helmReleaseRevision: "2"
+      nginx-config:
+        deploymentConfigHash: ee850e2ab2820505ec850e8045917b20a01e058a5c827542f13c0cdf884c38a6
+        kubectlManifestsHash: c533c3c24bdefc12ecdebe39a3a8c48310c10a36f81352562242de575d41baf6
+      redis:
+        deploymentConfigHash: e86249f84399fc77f53ffd9b4a66289902563239836eb75dc3de027549880fa8
+        helmReleaseRevision: "2"
+    images:
+      php:
+        imageConfigHash: 99822fb0f91a506af05dd43a9dc12950472073de2f1cc3a5b18a9a14c30b5276
+        dockerfileHash: 52ba86083ac2931613f4484b672d5e20896d1308e2b907f5a0a4760e529c2e53
+        contextHash: f5a82b7774bfa6201dcd932aea33b69030a35a1abdafee95146b7153ee529e44
+        imageName: leventogut/php
+        tag: TeDzJAD
     lastContext:
       namespace: default
       context: docker-desktop

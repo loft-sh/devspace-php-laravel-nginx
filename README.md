@@ -14,8 +14,13 @@ run:
 devspace dev
 ```
 
+For production make sure you apply the profile "production
+```
+devspace use profile production
+```
+
 Be aware that Nginx configuration map (default called nginx-config) will be deleted and re-created on deploy and deleted after purge/
-If you wish the change the name you can do so in .env.
+
 
 
 
