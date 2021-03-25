@@ -16,6 +16,7 @@ deployments:
   helm:
     componentChart: true
     values:
+      replicas: 1
       containers:
       - name: nginx
         image: ${NGINX_IMAGE}
