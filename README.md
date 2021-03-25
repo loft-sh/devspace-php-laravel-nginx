@@ -14,9 +14,20 @@ run:
 devspace dev
 ```
 
-For production make sure you apply the profile "production" profile
+For production make sure you apply the profile "production" profile.
 ```
 devspace use profile production
+devsapce deploy
+```
+or
+```
+devspace deploy -p production
 ```
 
+
+You can run artisan commands as follows:
+
+```
+devspace run php artisan optimize
+```
 ## TODO

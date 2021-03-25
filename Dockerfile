@@ -22,7 +22,7 @@ COPY . .
 # Install composer dependencies (optional)
 RUN composer install --no-dev --no-interaction
 
-
+RUN ln -s /var/www/html/artisan /usr/local/bin/artisan
 
 # Ensure file ownership for source code files
 RUN chown -R www-data:www-data .
