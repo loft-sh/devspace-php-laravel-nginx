@@ -8,10 +8,15 @@ images:
     - USER root
     dockerfile: Dockerfile
 deployments:
-- name: ${APP_DEPLOYMENT_NAME}
+- name: nginx-config
+  kubectl:
+    manifests:
+    - deploy/nginx-config-configmap.yaml
+- name: app
   helm:
     componentChart: true
     values:
+      replicas: 1
       containers:
       - name: nginx
         image: ${NGINX_IMAGE}
@@ -21,26 +26,38 @@ deployments:
             name: nginx-config
             subPath: nginx.conf
             readOnly: true
-        command:
-        - "/bin/sh"
-        args:
-        - "-c"
-        - "mkdir -p /var/www/html/public && touch /var/www/html/public/index.php && nginx -g 'daemon off;'"
+        - containerPath: /shared
+          volume:
+            name: ${SHARED_VOLUME_NAME}
+            subPath: /shared
+            readOnly: true
       - name: php
         image: ${PHP_IMAGE}
         command:
         - "/bin/sh"
         args:
         - "-c"
-        - "php /var/www/html/artisan migrate && php-fpm"
+        - "mkdir -p /shared/var/www/html/public || true; cp -r /var/www/html/public/* /shared/var/www/html/public/; php /var/www/html/artisan migrate && php-fpm"
+        volumeMounts:
+        - containerPath: /shared
+          volume:
+            name: ${SHARED_VOLUME_NAME}
+            subPath: /shared
+            readOnly: false
+      service:
+        ports:
+        - port: 80
       volumes:
       - name: nginx-config
         configMap:
           name: nginx-config
+      - name: ${SHARED_VOLUME_NAME}
+        size: ${SHARED_VOLUME_SIZE}
       labels:
         app: nginx
         portforward: true
-- name: ${MYSQL_DEPLOYMENT_NAME}
+    recreate: true
+- name: mysql
   helm:
     componentChart: false
     chart:
@@ -52,7 +69,7 @@ deployments:
         database: ${MYSQL_DATABASE}
         username: ${MYSQL_USER}
         password: ${MYSQL_PASSWORD}
-- name: ${REDIS_DEPLOYMENT_NAME}
+- name: redis
   helm:
     componentChart: false
     chart:
@@ -83,16 +100,33 @@ dev:
     - Dockerfile
     - "*.Dockerfile"
     - devspace.yaml
-    - vendor/*
+    - vendor/
+    - node_modules/
+    - deploy/
+    downloadExcludePaths:
+    - vendor/
+    - node_modules/
     onUpload:
       restartContainer: true
+  logs:
+    showLast: 100
+    sync: true
+    selectors:
+    - containerName: php
+    - containerName: nginx
+    - containerName: mysql
+    - containerName: redis
 profiles:
 - name: production
   patches:
   - op: remove
-    path: images.app.appendDockerfileInstructions
+    path: images.php.appendDockerfileInstructions
   - op: remove
-    path: images.app.injectRestartHelper
+    path: images.php.injectRestartHelper
+  - op: remove
+    path: deployments.name=app.helm.values.containers[0].command
+  - op: remove
+    path: deployments.name=app.helm.values.containers[0].args
 - name: interactive
   patches:
   - op: add
@@ -100,7 +134,7 @@ profiles:
     value:
       defaultEnabled: true
   - op: add
-    path: images.app.entrypoint
+    path: images.php.entrypoint
     value:
     - sleep
     - "9999999999"
@@ -108,18 +142,4 @@ commands:
 - name: php
   command: devspace enter php
 vars:
-hooks:
-- command: "/bin/sh"
-  args:
-    - "-c"
-    - "kubectl delete configmap nginx-config || true; kubectl create configmap nginx-config --from-file=./deploy/nginx.conf"
-  when:
-    before:
-      deployments: ${APP_DEPLOYMENT_NAME}
-- command: "/bin/sh"
-  args:
-    - "-c"
-    - "kubectl delete configmap nginx-config"
-  when:   
-    after:
-      purgeDeployments: ${APP_DEPLOYMENT_NAME}
+

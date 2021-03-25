@@ -9,7 +9,7 @@ profiles:
   "":
     deployments:
       app:
-        deploymentConfigHash: 8b8a88d3561a346be0c81a0930b517fef049122b9424a9199f129b06f37403eb
+        deploymentConfigHash: 93e9fe4314de60291f0848e8e7d88e1c97d2e9c6bc79a1c913d04faf208a0fcd
         helmChartHash: 5e20066b7f67de3fd73c754a41d4c9b9c883dbabd00439175044ab1ef77eefcb
         helmReleaseRevision: "1"
       my-app:
@@ -37,6 +37,9 @@ profiles:
       mysql:
         deploymentConfigHash: 2f5e584c6cd321662cf95b2fecb4f702984519d5b09322228407f8568dd4c118
         helmReleaseRevision: "1"
+      nginx-config:
+        deploymentConfigHash: ee850e2ab2820505ec850e8045917b20a01e058a5c827542f13c0cdf884c38a6
+        kubectlManifestsHash: c533c3c24bdefc12ecdebe39a3a8c48310c10a36f81352562242de575d41baf6
       redis:
         deploymentConfigHash: e86249f84399fc77f53ffd9b4a66289902563239836eb75dc3de027549880fa8
         helmReleaseRevision: "1"

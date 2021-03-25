@@ -5,7 +5,7 @@ WORKDIR /var/www/html
 
 
 RUN apt update \
- && apt install -y git zip libxml2-dev libonig-dev\
+ && apt install -y git zip libxml2-dev libonig-dev libnotify-bin\
  && curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 
@@ -31,6 +31,16 @@ RUN touch /var/www/html/storage/logs/laravel.log
 RUN chmod 777 /var/www/html/storage/logs/
 RUN chmod 777 /var/www/html/storage/logs/*
 
+
+# Install nodejs and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
+RUN apt update
+RUN apt install -y nodejs
+
+# Install dependencies
+RUN npm install --force -g node
+RUN npm install
+RUN npm run prod
 
 
 CMD ["php-fpm"]
