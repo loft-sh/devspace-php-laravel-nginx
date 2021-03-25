@@ -1,13 +1,30 @@
 version: v1beta9
 images:
-  php:
-    image: ${PHP_IMAGE}
+  app:
+    image: ${APP_IMAGE}
     preferSyncOverRebuild: true
     injectRestartHelper: true
     appendDockerfileInstructions:
     - USER root
-    dockerfile: Dockerfile
 deployments:
+- name: mysql
+  helm:
+    componentChart: false
+    chart:
+      name: mysql
+      version: 8.4.4
+      repo: https://charts.bitnami.com/bitnami
+    values:
+      image:
+        tag: ${DB_MYSQL_VERSION}
+      auth:
+        rootPassword: ${DB_ROOT_PASSWORD}
+        database: ${DB_DATABASE}
+        username: ${DB_USERNAME}
+        password: ${DB_PASSWORD}
+      primary:
+        service:
+          port: ${DB_PORT}
 - name: nginx-config
   kubectl:
     manifests:
@@ -19,7 +36,7 @@ deployments:
       replicas: 1
       containers:
       - name: nginx
-        image: ${NGINX_IMAGE}
+        image: nginx:1.19
         volumeMounts:
         - containerPath: /etc/nginx/nginx.conf
           volume:
@@ -28,21 +45,44 @@ deployments:
             readOnly: true
         - containerPath: /shared
           volume:
-            name: ${SHARED_VOLUME_NAME}
+            name: ${ASSET_VOLUME_NAME}
             subPath: /shared
             readOnly: true
       - name: php
-        image: ${PHP_IMAGE}
+        image: ${APP_IMAGE}
         command:
         - "/bin/sh"
         args:
         - "-c"
-        - "mkdir -p /shared/var/www/html/public || true; cp -r /var/www/html/public/* /shared/var/www/html/public/; php /var/www/html/artisan migrate && php-fpm"
+        - |
+          cp -r /var/www/html/public/* /assets/;
+          
+          while ! mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" >/dev/null 2>&1;
+          do
+            echo "Waiting for database to start..."
+            sleep 3
+          done
+
+          php artisan migrate;
+          php-fpm
+        env:
+        - name: APP_KEY
+          value: $!{APP_KEY}
+        - name: DB_HOST
+          value: $!{DB_HOST}
+        - name: DB_PORT
+          value: $!{DB_PORT}
+        - name: DB_USERNAME
+          value: $!{DB_USERNAME}
+        - name: DB_PASSWORD
+          value: $!{DB_PASSWORD}
+        - name: REDIS_PASSWORD
+          value: $!{REDIS_PASSWORD}
         volumeMounts:
-        - containerPath: /shared
+        - containerPath: /assets
           volume:
-            name: ${SHARED_VOLUME_NAME}
-            subPath: /shared
+            name: ${ASSET_VOLUME_NAME}
+            subPath: /assets
             readOnly: false
       service:
         ports:
@@ -51,31 +91,19 @@ deployments:
       - name: nginx-config
         configMap:
           name: nginx-config
-      - name: ${SHARED_VOLUME_NAME}
-        size: ${SHARED_VOLUME_SIZE}
-      labels:
-        app: nginx
-        portforward: true
+      - name: ${ASSET_VOLUME_NAME}
+        size: ${ASSET_VOLUME_SIZE}
     recreate: true
-- name: mysql
-  helm:
-    componentChart: false
-    chart:
-      name: ${MYSQL_CHART}
-      version: ${MYSQL_CHART_VERSION}
-    values:
-      auth:
-        rootPassword: ${MYSQL_ROOT_PASSWORD}
-        database: ${MYSQL_DATABASE}
-        username: ${MYSQL_USER}
-        password: ${MYSQL_PASSWORD}
 - name: redis
   helm:
     componentChart: false
     chart:
-      name: ${REDIS_CHART}
-      version: ${REDIS_CHART_VERSION}
+      name: redis
+      version: 12.8.3
+      repo: https://charts.bitnami.com/bitnami
     values:
+      image:
+        tag: ${REDIS_VERSION}
       networkPolicy:
         enabled: true
         allowExternal: true
@@ -84,21 +112,18 @@ deployments:
         enabled: false
 dev:
   ports:
-  - labelSelector:
-      app: nginx
-      portforward: true
+  - imageName: app
     forward:
     - port: 8080
       remotePort: 80
   open:
   - url: http://localhost:8080
   sync:
-  - imageName: php
+  - imageName: app
     excludePaths:
     - .git/
     uploadExcludePaths:
     - Dockerfile
-    - "*.Dockerfile"
     - devspace.yaml
     - vendor/
     - node_modules/
@@ -108,37 +133,66 @@ dev:
     - node_modules/
     onUpload:
       restartContainer: true
+      execRemote:
+        onBatch:
+          command: sh
+          args: ["-c", "cp -r /var/www/html/public/* /assets/"]
   logs:
     showLast: 100
     sync: true
     selectors:
-    - containerName: php
     - containerName: nginx
-    - containerName: mysql
-    - containerName: redis
+vars:
+- name: APP_IMAGE
+  question: Which image repository should your image be pushed to? (e.g. dockerhubuser/image, gcr.io/project/image)
+- name: DB_PASSWORD
+  password: true
+- name: DB_ROOT_PASSWORD
+  password: true
+- name: REDIS_PASSWORD
+  password: true
+commands:
+- name: artisan
+  command: devspace enter -c php -- php artisan
+- name: composer
+  command: devspace enter -c php -- composer
+- name: php
+  command: devspace enter -c php -- php
+- name: npm
+  command: devspace enter -c php -- npm
+- name: update-db-user
+  command: |
+    devspace enter --wait -l app.kubernetes.io/name=mysql -- sh -c "
+      while ! mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' >/dev/null 2>&1;
+      do
+        echo 'Waiting for database to be ready...';
+        sleep 3;
+      done;
+
+      echo \"CREATE USER IF NOT EXISTS '${DB_USERNAME}'@'%' IDENTIFIED BY '${DB_PASSWORD}'; ALTER USER laravel IDENTIFIED BY '${DB_PASSWORD}';\" | mysql -u root -p'${DB_ROOT_PASSWORD}'"
+- name: generate-key
+  command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
+hooks:
+- command: "devspace"
+  args: ["run", "update-db-user"]
+  when:
+    after:
+      deployments: mysql
 profiles:
 - name: production
   patches:
   - op: remove
-    path: images.php.appendDockerfileInstructions
+    path: images.app.appendDockerfileInstructions
   - op: remove
-    path: images.php.injectRestartHelper
+    path: images.app.injectRestartHelper
 - name: interactive
   patches:
   - op: add
     path: dev.interactive
     value:
       defaultEnabled: true
-  - op: add
-    path: images.php.entrypoint
+  - op: replace
+    path: deployments.name=app.helm.values.containers.name=php.args
     value:
-    - sleep
-    - "9999999999"
-commands:
-- name: php
-  command: devspace enter -c php
-- name: nginx
-  command: devspace enter -c nginx
-- name: cleanup
-  command: devspace cleanup images
-vars:
+    - "-c"
+    - "sleep 9999999999"

@@ -2,7 +2,6 @@
 /public/hot
 /public/storage
 /storage/*.key
-.env
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
@@ -15,3 +14,6 @@ vendor/*
 
 # exception to the rule
 !vendor/.gitkeep 
+
+# devspace
+.devspace/
