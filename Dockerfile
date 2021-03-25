@@ -42,6 +42,6 @@ RUN npm install --force -g node
 RUN npm install
 RUN npm run prod
 
-USER 1001
+USER 33
 
 CMD ["php-fpm"]
