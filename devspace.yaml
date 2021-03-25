@@ -123,10 +123,6 @@ profiles:
     path: images.php.appendDockerfileInstructions
   - op: remove
     path: images.php.injectRestartHelper
-  - op: remove
-    path: deployments.name=app.helm.values.containers[0].command
-  - op: remove
-    path: deployments.name=app.helm.values.containers[0].args
 - name: interactive
   patches:
   - op: add
@@ -140,5 +136,9 @@ profiles:
     - "9999999999"
 commands:
 - name: php
-  command: devspace enter php
+  command: devspace enter -c php
+- name: nginx
+  command: devspace enter -c nginx
+- name: cleanup
+  command: devspace cleanup images
 vars:
