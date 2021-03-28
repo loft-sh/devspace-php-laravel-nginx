@@ -9,6 +9,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
 # exclude everything
 vendor/*
 
@@ -17,3 +18,9 @@ vendor/*
 
 # devspace
 .devspace/
+
+# .env
+.env
+
+# Some IDE files
+.idea

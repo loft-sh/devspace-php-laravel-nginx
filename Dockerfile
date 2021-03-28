@@ -3,8 +3,8 @@ FROM php:7.4-fpm
 WORKDIR /var/www/html
 
 # Install composer
-RUN apt update \
- && apt install -y git zip libxml2-dev libonig-dev libnotify-bin\
+RUN apt-get update \
+ && apt-get install -y git zip libxml2-dev libonig-dev libnotify-bin\
  && curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install MySQL extensions
@@ -13,13 +13,12 @@ RUN docker-php-ext-install xml mbstring mysqli pdo pdo_mysql && docker-php-ext-e
 
 # Install Redis extension
 RUN pecl install redis \
-    && pecl install xdebug \
-    && docker-php-ext-enable redis xdebug
+    && docker-php-ext-enable redis
 
 # Install nodejs and npm
 RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
-RUN apt update
-RUN apt install -y nodejs
+RUN apt-get update
+RUN apt-get install -y nodejs
 
 # Add project code to WORKDIR
 COPY . .
@@ -31,8 +30,10 @@ RUN composer install --no-dev --no-interaction
 RUN npm install
 
 # Optimize for production
-RUN php artisan optimize
 RUN npm run prod
+
+# Forward Laravel logs to stderr
+RUN ln -sf /dev/stdout /var/www/html/storage/logs/laravel.log
 
 # Ensure file ownership for source code files
 RUN chown -R www-data:www-data .

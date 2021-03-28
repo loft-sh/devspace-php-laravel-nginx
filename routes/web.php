@@ -17,6 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('ping', function () {
+    return "pong";
+});
+
+Route::get('info', function () {
+    return phpinfo();
+});
+
+Route::get('/test', [App\Http\Controllers\TestController::class, 'index'])->name('test');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
