@@ -3,10 +3,12 @@ Dockerfile
 # Ignore .git folder
 .git
 
-
 # Ignore devspace.yaml file to prevent image rebuilding after config changes
 devspace.yaml
 .devspace
 
-# Ignore deploy folder to prevent image rebuilding after config changes
+# Ignore deploy folder
 deploy
+
+# Ignore vendor foler
+vendor

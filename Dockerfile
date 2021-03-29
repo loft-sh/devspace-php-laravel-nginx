@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:7.4-fpm as php-base
 
 WORKDIR /var/www/html
 
@@ -9,7 +9,7 @@ RUN apt-get update \
 
 # Install MySQL extensions
 RUN docker-php-ext-install xml mbstring mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql \
- && apt -y install mariadb-client
+ && apt-get -y install mariadb-client
 
 # Install Redis extension
 RUN pecl install redis \
@@ -20,17 +20,16 @@ RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
 RUN apt-get update
 RUN apt-get install -y nodejs
 
+
+FROM php-base
 # Add project code to WORKDIR
 COPY . .
 
-# Install composer dependencies
+# Install composer dependencies 
 RUN composer install --no-dev --no-interaction
 
 # Install nodejs dependencies
 RUN npm install
-
-# Optimize for production
-RUN npm run prod
 
 # Forward Laravel logs to stderr
 RUN ln -sf /dev/stdout /var/www/html/storage/logs/laravel.log

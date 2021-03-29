@@ -141,6 +141,8 @@ dev:
     - .git/
     - vendor/
     - node_modules/
+    - storage
+    - .devspace
     uploadExcludePaths:
     - Dockerfile
     - devspace.yaml
@@ -193,9 +195,9 @@ commands:
       done;
 
       echo \"CREATE USER IF NOT EXISTS '${DB_USERNAME}'@'%' IDENTIFIED BY '${DB_PASSWORD}'; ALTER USER '${DB_USERNAME}' IDENTIFIED BY '${DB_PASSWORD}';\" | mysql -u root -p'${DB_ROOT_PASSWORD}'"
-  description: Update Mysql DB User user/password.
+  description: Update MySQL DB user/password.
 - name: generate-key
-  command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
+  command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install --no-dev --no-interaction && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
   description: Generate APP_KEY.
 - name: migrate
   command: devspace enter -c php -- php artisan migrate
@@ -208,7 +210,7 @@ hooks:
   args: ["run", "update-db-user"]
   when:
     after:
-      deployments: mysql
+      deployments: mysql_REMOVE_THIS_POSTFIX_AFTER_FIX
 profiles:
 - name: production
   patches:
@@ -230,11 +232,6 @@ profiles:
     path: images.app.appendDockerfileInstructions
     value:
       RUN npm run dev
-  - op: add
-    path: images.app.appendDockerfileInstructions
-    value: |
-      RUN pecl install xdebug \
-      && docker-php-ext-enable xdebug
 - name: interactive
   patches:
   - op: add

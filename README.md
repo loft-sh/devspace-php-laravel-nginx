@@ -28,25 +28,37 @@ devspace deploy -p production
 You can run artisan commands as follows:
 
 ```
-devspace run php artisan optimize
+devspace run artisan optimize
 ```
+
 ## TODO / Changelog (last update 20120328)
-+ remove .env from git
-+ laravel logs to stdout
++ Remove .env from git
++ Laravel logs to stdout
 - reload nignx container when the configmap nginx-config changes
-- is there a way to re-deploy one of the deployments ? e.g. I want to redeploy nginx configmap 
-+ rebuild app image when Dockerfile changes
-+ fix nginx config root
-+ fix update-db-user hardcoded username to '${DB_USERNAME}'
-+ covert nginx:TAG TAG to variable
+- Is there a way to re-deploy one of the deployments ? e.g. I want to redeploy nginx configmap 
++ Rebuild app image when Dockerfile changes
++ Fix nginx config root
++ Fix update-db-user hardcoded username to '${DB_USERNAME}'
++ Convert nginx:TAG TAG to variable
 + RUN npm run prod / RUN npm run dev ( insert these to the dockerfile. add to profiles)
     note: this required adding appendDockerfileInstructions 
-+ move php artisan migrate to a initContainer
-~ decide whether to enable xdebug or not.
-+ make xdebug conditional using profiles, production shouldn't include it.
-- how to make sure xdebug connection is established? if we can not no point in installing xdebug
-+ rebuild and redeploy when there is change in Dockerile
-+ add command to enter mysql db shell.
++ Move php artisan migrate to a initContainer
+~ Decide whether to enable xdebug or not.
++ Make xdebug conditional using profiles, production shouldn't include it.
+- How to make sure xdebug connection is established? if we can not no point in installing xdebug
++ Rebuild and redeploy when there is change in Dockerile.
++ Add command to enter mysql db shell.
++ Replace "composer install" with "composer install --no-dev --no-interaction" on generate-key command.
 
+## Questions
+- Despite following configuration app:php containers' logs is coming?
+```
+  logs:
+    showLast: 100
+    sync: true
+    selectors:
+    - containerName: nginx
+```
 ## Tests
-+ create files in public and see if they are uploaded and synced
++ Create files in public and see if they are uploaded and synced.
+- Install another dependency via composer and see new structure works. (also document this to be used in the article)
