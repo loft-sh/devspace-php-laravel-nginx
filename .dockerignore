@@ -10,5 +10,5 @@ devspace.yaml
 # Ignore deploy folder
 deploy
 
-# Ignore vendor foler
+# Ignore vendor folder
 vendor

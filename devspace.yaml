@@ -203,7 +203,7 @@ commands:
   command: devspace enter -c php -- php artisan migrate
   description: Run DB migrations
 - name: mysql
-  command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}'
+  command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
   description: Enter to MySQL shell.
 hooks:
 - command: "devspace"
@@ -215,7 +215,7 @@ profiles:
 - name: production
   patches:
   - op: remove
-    path: images.app.appendDockerfileInstructions
+    path: images.app.appendDockerfileInstructions[0]
   - op: remove
     path: images.app.injectRestartHelper
   - op: add

@@ -41,11 +41,9 @@ devspace run artisan optimize
 + Fix update-db-user hardcoded username to '${DB_USERNAME}'
 + Convert nginx:TAG TAG to variable
 + RUN npm run prod / RUN npm run dev ( insert these to the dockerfile. add to profiles)
-    note: this required adding appendDockerfileInstructions 
 + Move php artisan migrate to a initContainer
 ~ Decide whether to enable xdebug or not.
-+ Make xdebug conditional using profiles, production shouldn't include it.
-- How to make sure xdebug connection is established? if we can not no point in installing xdebug
++ remove xdebug
 + Rebuild and redeploy when there is change in Dockerile.
 + Add command to enter mysql db shell.
 + Replace "composer install" with "composer install --no-dev --no-interaction" on generate-key command.
@@ -62,3 +60,4 @@ devspace run artisan optimize
 ## Tests
 + Create files in public and see if they are uploaded and synced.
 - Install another dependency via composer and see new structure works. (also document this to be used in the article)
+- deploy to production
