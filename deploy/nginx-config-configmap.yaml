@@ -4,43 +4,38 @@ metadata:
   name: nginx-config
 data:
   nginx.conf: |-
-    events {
-      worker_connections  4096;
-    }
-    http {
-        server {
-            listen 80 default_server;
-            server_name nginx;
-            root /assets/;
+    server {
+        listen 80 default_server;
+        server_name nginx;
+        root /assets/;
 
-            add_header X-Frame-Options "SAMEORIGIN";
-            add_header X-Content-Type-Options "nosniff";
+        add_header X-Frame-Options "SAMEORIGIN";
+        add_header X-Content-Type-Options "nosniff";
 
-            index index.php;
+        index index.php;
 
-            charset utf-8;
+        charset utf-8;
 
-            error_page 404 = @php-fpm;
+        error_page 404 = @php-fpm;
 
-            location = / {
-              try_files = @php-fpm;
-            }
-
-            location = /index.php {
-              try_files = @php-fpm;
-            }
-            
-            location @php-fpm {
-                fastcgi_pass 127.0.0.1:9000;
-                fastcgi_param SCRIPT_FILENAME /var/www/html/public/index.php;
-                include fastcgi_params;
-            }
-
-            location ~ /\.(?!well-known).* {
-                deny all;
-            }
-
-            location = /favicon.ico { access_log off; log_not_found off; }
-            location = /robots.txt  { access_log off; log_not_found off; }
+        location = / {
+          try_files = @php-fpm;
         }
+
+        location = /index.php {
+          try_files = @php-fpm;
+        }
+        
+        location @php-fpm {
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_param SCRIPT_FILENAME /var/www/html/public/index.php;
+            include fastcgi_params;
+        }
+
+        location ~ /\.(?!well-known).* {
+            deny all;
+        }
+
+        location = /favicon.ico { access_log off; log_not_found off; }
+        location = /robots.txt  { access_log off; log_not_found off; }
     }

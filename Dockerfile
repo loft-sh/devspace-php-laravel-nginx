@@ -1,4 +1,8 @@
-FROM php:7.4-fpm as php-base
+################ Development Stage ################
+# Development stage will be used for development 
+# Run: devspace dev (see devspace.yaml docker target)
+###################################################
+FROM php:7.4-fpm as dev
 
 WORKDIR /var/www/html
 
@@ -20,8 +24,6 @@ RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
 RUN apt-get update
 RUN apt-get install -y nodejs
 
-
-FROM php-base
 # Add project code to WORKDIR
 COPY . .
 
@@ -34,10 +36,22 @@ RUN npm install
 # Forward Laravel logs to stderr
 RUN ln -sf /dev/stdout /var/www/html/storage/logs/laravel.log
 
+CMD ["php-fpm"]
+
+
+################ Production Stage #######@#########
+# Production stage will be used for deployment 
+# Run: devspace deploy
+###################################################
+FROM dev as production
+
+# Optimize for 
+RUN php artisan optimize
+RUN npm run prod
+
 # Ensure file ownership for source code files
 RUN chown -R www-data:www-data .
 
 # Do not run container as root in production
 USER www-data
 
-CMD ["php-fpm"]

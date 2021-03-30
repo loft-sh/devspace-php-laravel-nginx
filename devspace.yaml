@@ -6,6 +6,10 @@ images:
     injectRestartHelper: true
     appendDockerfileInstructions:
     - USER root
+    build:
+      docker:
+        options:
+          target: dev
 deployments:
 - name: mysql
   helm:
@@ -16,12 +20,12 @@ deployments:
       repo: https://charts.bitnami.com/bitnami
     values:
       image:
-        tag: ${DB_MYSQL_VERSION}
+        tag: $!{DB_MYSQL_VERSION}
       auth:
-        rootPassword: ${DB_ROOT_PASSWORD}
-        database: ${DB_DATABASE}
-        username: ${DB_USERNAME}
-        password: ${DB_PASSWORD}
+        rootPassword: $!{DB_ROOT_PASSWORD}
+        database: $!{DB_DATABASE}
+        username: $!{DB_USERNAME}
+        password: $!{DB_PASSWORD}
       primary:
         service:
           port: ${DB_PORT}
@@ -34,19 +38,19 @@ deployments:
     componentChart: true
     values:
       replicas: 1
+      annotations:
+        nginx-config-hash: $!{NGINX_CONFIG_HASH}
       containers:
       - name: nginx
-        image: nginx:${NGINX_VERSION}
+        image: nginx:${NGINX_IMAGE_VERSION}
         volumeMounts:
-        - containerPath: /etc/nginx/nginx.conf
+        - containerPath: /etc/nginx/conf.d
           volume:
             name: nginx-config
-            subPath: nginx.conf
             readOnly: true
         - containerPath: /assets
           volume:
             name: ${ASSET_VOLUME_NAME}
-            subPath: /assets
             readOnly: true
       - name: php
         image: ${APP_IMAGE}
@@ -56,11 +60,10 @@ deployments:
         - "-c"
         - |
           cp -r /var/www/html/public/* /assets/;
-
           php-fpm
         env:
         - name: APP_DEBUG
-          value: ${APP_DEBUG}
+          value: $!{APP_DEBUG}
         - name: APP_KEY
           value: $!{APP_KEY}
         - name: DB_HOST
@@ -77,7 +80,6 @@ deployments:
         - containerPath: /assets
           volume:
             name: ${ASSET_VOLUME_NAME}
-            subPath: /assets
             readOnly: false
       initContainers:
       - name: php-init
@@ -93,7 +95,7 @@ deployments:
             sleep 3
           done
 
-          php artisan migrate
+          php artisan migrate --force --no-interaction
         env:
         - name: DB_HOST
           value: $!{DB_HOST}
@@ -141,15 +143,16 @@ dev:
   - imageName: app
     excludePaths:
     - .git/
-    - vendor/
-    - node_modules/
-    - storage
-    - .devspace
+    - .devspace/
+    - storage/logs/
     - README.md
     uploadExcludePaths:
     - Dockerfile
     - devspace.yaml
+    - storage/
     - deploy/
+    - vendor/
+    - node_modules/
     onUpload:
       restartContainer: true
       execRemote:
@@ -164,8 +167,7 @@ dev:
   autoReload:
     paths:
     - Dockerfile
-    images:
-    - app
+    - deploy/nginx-config-configmap.yaml
 vars:
 - name: APP_IMAGE
   question: Which image repository should your image be pushed to? (e.g. dockerhubuser/image, gcr.io/project/image)
@@ -176,22 +178,28 @@ vars:
 - name: REDIS_PASSWORD
   password: true
 - name: APP_DEBUG
-  question: Enable / disable debugging
-- name: test
+  question: Enable debugging? (true/false)
+  default: true
+  source: env
+- name: NGINX_CONFIG_HASH
+  source: command
+  command: kubectl
+  args: ["get", "configmap", "nginx-config", "-o", "jsonpath={.metadata.resourceVersion}"]
 commands:
 - name: artisan
-  command: devspace enter -c php -- php artisan
   description: Entry point for artisan commands.
+  command: devspace enter -c php -- php artisan
 - name: composer
-  command: devspace enter -c php -- composer
   description: Entry point for composer commands.
+  command: devspace enter -c php -- composer
 - name: php
-  command: devspace enter -c php -- php
   description: Entry point for PHP commands.
+  command: devspace enter -c php -- php
 - name: npm
-  command: devspace enter -c php -- npm
   description: Entry point for NPM commands.
+  command: devspace enter -c php -- npm
 - name: update-db-user
+  description: Update MySQL DB user/password.
   command: |
     devspace enter --wait -l app.kubernetes.io/name=mysql -- sh -c "
       while ! mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' >/dev/null 2>&1;
@@ -201,44 +209,52 @@ commands:
       done;
 
       echo \"CREATE USER IF NOT EXISTS '${DB_USERNAME}'@'%' IDENTIFIED BY '${DB_PASSWORD}'; ALTER USER '${DB_USERNAME}' IDENTIFIED BY '${DB_PASSWORD}';\" | mysql -u root -p'${DB_ROOT_PASSWORD}'"
-  description: Update MySQL DB user/password.
 - name: generate-key
-  command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install --no-dev --no-interaction && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
   description: Generate APP_KEY.
+  command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install --no-dev --no-interaction && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
 - name: mysql
-  command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
   description: Enter to MySQL shell.
-  
+  command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
 hooks:
 - command: "devspace"
   args: ["run", "update-db-user"]
   when:
     after:
-      deployments: mysql_REMOVE_THIS_POSTFIX_AFTER_FIX
+      deployments: mysql
+- command: "npm"
+  args: ["run", "watch"]
+  background: true
+  silent: true
+  where: 
+    container:
+      labelSelector:
+        app.kubernetes.io/component: "app"
+      containerName: php
+  when:
+    after:
+      deployments: all
+- command: "sh"
+  args: ["-c", "nginx -t && nginx -s reload"]
+  where: 
+    container:
+      labelSelector:
+        app.kubernetes.io/component: "app"
+      containerName: nginx
+  when:
+    after:
+      deployments: all
 profiles:
 - name: production
   patches:
   - op: remove
-    path: images.app.appendDockerfileInstructions[0]
+    path: images.app.appendDockerfileInstructions
   - op: remove
     path: images.app.injectRestartHelper
-  - op: add
-    path: images.app.appendDockerfileInstructions
-    value:
-      RUN npm run prod
+  - op: remove
+    path: images.app.build.docker.options.target
   - op: replace
-    path: deployments.name=app.helm.values.containers.name=php.env.name=APP_DEBUG
+    path: deployments.name=app.helm.values.containers.name=php.env.name=APP_DEBUG.value
     value: "false"
-  - op: add
-    path: images.app.appendDockerfileInstructions
-    value:
-      RUN php artisan optimize 
-- name: development
-  patches:
-  - op: add
-    path: images.app.appendDockerfileInstructions
-    value:
-      RUN npm run dev
 - name: interactive
   patches:
   - op: add
