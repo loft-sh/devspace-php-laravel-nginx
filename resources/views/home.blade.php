@@ -13,7 +13,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <p>
+                        <a href="{{ url('/info') }}"> PHP Info()</a>
+                    </p>
+                    <p>
+                        <a href="{{ url('/test') }}"> Static Asset Test</a>
+                    </p>
+                    <p>
+                        <a href="{{ url('/ping') }}"> Ping Pong</a>
+                    </p>
                     {{ __('You are logged in!') }}
                 </div>
             </div>

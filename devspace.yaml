@@ -59,6 +59,8 @@ deployments:
 
           php-fpm
         env:
+        - name: APP_DEBUG
+          value: ${APP_DEBUG}
         - name: APP_KEY
           value: $!{APP_KEY}
         - name: DB_HOST
@@ -143,6 +145,7 @@ dev:
     - node_modules/
     - storage
     - .devspace
+    - README.md
     uploadExcludePaths:
     - Dockerfile
     - devspace.yaml
@@ -172,6 +175,9 @@ vars:
   password: true
 - name: REDIS_PASSWORD
   password: true
+- name: APP_DEBUG
+  question: Enable / disable debugging
+- name: test
 commands:
 - name: artisan
   command: devspace enter -c php -- php artisan
@@ -199,12 +205,10 @@ commands:
 - name: generate-key
   command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install --no-dev --no-interaction && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
   description: Generate APP_KEY.
-- name: migrate
-  command: devspace enter -c php -- php artisan migrate
-  description: Run DB migrations
 - name: mysql
   command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
   description: Enter to MySQL shell.
+  
 hooks:
 - command: "devspace"
   args: ["run", "update-db-user"]
@@ -222,6 +226,9 @@ profiles:
     path: images.app.appendDockerfileInstructions
     value:
       RUN npm run prod
+  - op: replace
+    path: deployments.name=app.helm.values.containers.name=php.env.name=APP_DEBUG
+    value: "false"
   - op: add
     path: images.app.appendDockerfileInstructions
     value:
