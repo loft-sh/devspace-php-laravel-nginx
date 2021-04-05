@@ -184,7 +184,7 @@ vars:
 - name: NGINX_CONFIG_HASH
   source: command
   command: kubectl
-  args: ["get", "configmap", "nginx-config", "-o", "jsonpath={.metadata.resourceVersion}"]
+  args: ["get", "configmap", "nginx-config", "--ignore-not-found", "-o", "jsonpath={.metadata.resourceVersion}"]
 commands:
 - name: artisan
   description: Entry point for artisan commands.
