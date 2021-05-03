@@ -202,7 +202,7 @@ commands:
   description: Update MySQL DB user/password.
   command: |
     devspace enter --wait -l app.kubernetes.io/name=mysql -- sh -c "
-      while ! mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' >/dev/null 2>&1;
+      while ! mysql -u root -p'${DB_ROOT_PASSWORD}' >/dev/null 2>&1;
       do
         echo 'Waiting for database to be ready...';
         sleep 3;
@@ -225,7 +225,7 @@ hooks:
   args: ["run", "watch"]
   background: true
   silent: true
-  where: 
+  where:
     container:
       labelSelector:
         app.kubernetes.io/component: "app"
@@ -235,7 +235,7 @@ hooks:
       deployments: all
 - command: "sh"
   args: ["-c", "nginx -t && nginx -s reload"]
-  where: 
+  where:
     container:
       labelSelector:
         app.kubernetes.io/component: "app"
