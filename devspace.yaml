@@ -128,7 +128,7 @@ deployments:
       networkPolicy:
         enabled: true
         allowExternal: true
-      password: ${REDIS_PASSWORD}
+      password: $!{REDIS_PASSWORD}
       cluster:
         enabled: false
 dev:
