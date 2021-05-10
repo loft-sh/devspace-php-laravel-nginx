@@ -89,12 +89,13 @@ deployments:
         args:
         - "-c"
         - |
-          while ! mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" >/dev/null 2>&1;
-          do
+          while ! mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e ';' >/dev/null 2>&1 ; do
             echo "Waiting for database to start..."
             sleep 3
           done
 
+          php artisan config:clear
+          php artisan cache:clear
           php artisan migrate --force --no-interaction
         env:
         - name: APP_KEY
@@ -209,14 +210,16 @@ commands:
   description: Enter to MySQL shell.
   command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
 hooks:
-- command: |
-    while ! mysql -u root -p'${DB_ROOT_PASSWORD}' >/dev/null 2>&1;
-    do
-      echo 'Waiting for database to be ready...';
-      sleep 3;
-    done;
+- command: sh
+  args:
+    - -c
+    - |
+      while ! mysql -u root -p"${DB_ROOT_PASSWORD}" -e ";" >/dev/null 2>&1 ; do
+        echo "Waiting for database to be ready...";
+        sleep 3;
+      done
 
-    echo \"CREATE USER IF NOT EXISTS '${DB_USERNAME}'@'%' IDENTIFIED BY '${DB_PASSWORD}'; ALTER USER '${DB_USERNAME}' IDENTIFIED BY '${DB_PASSWORD}';\" | mysql -u root -p'${DB_ROOT_PASSWORD}'"
+      echo "CREATE USER IF NOT EXISTS '${DB_USERNAME}'@'%' IDENTIFIED BY '${DB_PASSWORD}'; ALTER USER '${DB_USERNAME}' IDENTIFIED BY '${DB_PASSWORD}';" | mysql -u root -p'${DB_ROOT_PASSWORD}'
   where:
     container:
       labelSelector: 
