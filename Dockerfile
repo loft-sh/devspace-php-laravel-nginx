@@ -1,5 +1,5 @@
 ################ Development Stage ################
-# Development stage will be used for development 
+# Development stage will be used for development
 # Run: devspace dev (see devspace.yaml docker target)
 ###################################################
 FROM php:7.4-fpm as dev
@@ -27,11 +27,13 @@ RUN apt-get install -y nodejs
 # Add project code to WORKDIR
 COPY . .
 
-# Install composer dependencies 
+# Install composer dependencies
 RUN composer install --no-dev --no-interaction
 
 # Install nodejs dependencies
 RUN npm install
+# Install Laravel Mix
+RUN npm install laravel-mix
 
 # Forward Laravel logs to stderr
 RUN ln -sf /dev/stdout /var/www/html/storage/logs/laravel.log
@@ -40,12 +42,15 @@ CMD ["php-fpm"]
 
 
 ################ Production Stage #######@#########
-# Production stage will be used for deployment 
+# Production stage will be used for deployment
 # Run: devspace deploy
 ###################################################
 FROM dev as production
 
-# Optimize for 
+WORKDIR /var/www/html
+
+
+# Optimize for
 RUN php artisan optimize
 RUN npm run prod
 
