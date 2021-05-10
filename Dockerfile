@@ -3,6 +3,8 @@
 # Run: devspace dev (see devspace.yaml docker target)
 ###################################################
 FROM php:7.4-fpm as dev
+ARG NODE_ENV_ARG=development
+ENV NODE_ENV=$NODE_ENV_ARG
 
 WORKDIR /var/www/html
 
@@ -31,9 +33,7 @@ COPY . .
 RUN composer install --no-dev --no-interaction
 
 # Install nodejs dependencies
-RUN npm install
-# Install Laravel Mix
-RUN npm install laravel-mix
+RUN NODE_ENV=development npm install
 
 # Forward Laravel logs to stderr
 RUN ln -sf /dev/stdout /var/www/html/storage/logs/laravel.log
@@ -49,9 +49,11 @@ FROM dev as production
 
 WORKDIR /var/www/html
 
-
-# Optimize for
+# Optimize for production
 RUN php artisan optimize
+
+# Install Laravel Mix
+RUN npm install laravel-mix  # remove this please
 RUN npm run prod
 
 # Ensure file ownership for source code files

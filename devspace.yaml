@@ -97,6 +97,8 @@ deployments:
 
           php artisan migrate --force --no-interaction
         env:
+        - name: APP_KEY
+          value: $!{APP_KEY}
         - name: DB_HOST
           value: $!{DB_HOST}
         - name: DB_PORT
@@ -105,6 +107,8 @@ deployments:
           value: $!{DB_USERNAME}
         - name: DB_PASSWORD
           value: $!{DB_PASSWORD}
+        - name: REDIS_PASSWORD
+          value: $!{REDIS_PASSWORD}
       service:
         ports:
         - port: 80
@@ -198,9 +202,14 @@ commands:
 - name: npm
   description: Entry point for NPM commands.
   command: devspace enter -c php -- npm
-- name: update-db-user
-  description: Update MySQL DB user/password.
-  command: |
+- name: generate-key
+  description: Generate APP_KEY.
+  command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install --no-dev --no-interaction && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
+- name: mysql
+  description: Enter to MySQL shell.
+  command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
+hooks:
+- command: |
     devspace enter --wait -l app.kubernetes.io/name=mysql -- sh -c "
       while ! mysql -u root -p'${DB_ROOT_PASSWORD}' >/dev/null 2>&1;
       do
@@ -209,15 +218,11 @@ commands:
       done;
 
       echo \"CREATE USER IF NOT EXISTS '${DB_USERNAME}'@'%' IDENTIFIED BY '${DB_PASSWORD}'; ALTER USER '${DB_USERNAME}' IDENTIFIED BY '${DB_PASSWORD}';\" | mysql -u root -p'${DB_ROOT_PASSWORD}'"
-- name: generate-key
-  description: Generate APP_KEY.
-  command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install --no-dev --no-interaction && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
-- name: mysql
-  description: Enter to MySQL shell.
-  command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
-hooks:
-- command: "devspace"
-  args: ["run", "update-db-user"]
+  where:
+    container:
+      labelSelector: 
+        app.kubernetes.io/name: mysql
+        app.kubernetes.io/component: primary
   when:
     after:
       deployments: mysql
