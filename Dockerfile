@@ -35,7 +35,7 @@ RUN composer install --no-dev --no-interaction
 # Install nodejs dependencies
 RUN NODE_ENV=development npm install
 
-# Forward Laravel logs to stderr
+# Forward Laravel logs to stdout
 RUN ln -sf /dev/stdout /var/www/html/storage/logs/laravel.log
 
 CMD ["php-fpm"]
@@ -52,8 +52,6 @@ WORKDIR /var/www/html
 # Optimize for production
 RUN php artisan optimize
 
-# Install Laravel Mix
-RUN npm install laravel-mix  # remove this please
 RUN npm run prod
 
 # Ensure file ownership for source code files

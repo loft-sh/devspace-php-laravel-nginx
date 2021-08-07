@@ -1,275 +1,291 @@
-version: v1beta9
-images:
-  app:
-    image: ${APP_IMAGE}
-    preferSyncOverRebuild: true
-    injectRestartHelper: true
-    appendDockerfileInstructions:
-    - USER root
-    build:
-      docker:
-        options:
-          target: dev
-deployments:
-- name: mysql
-  helm:
-    componentChart: false
-    chart:
-      name: mysql
-      version: 8.4.4
-      repo: https://charts.bitnami.com/bitnami
-    values:
-      image:
-        tag: $!{DB_MYSQL_VERSION}
-      auth:
-        rootPassword: $!{DB_ROOT_PASSWORD}
-        database: $!{DB_DATABASE}
-        username: $!{DB_USERNAME}
-        password: $!{DB_PASSWORD}
-      primary:
-        service:
-          port: ${DB_PORT}
-- name: nginx-config
-  kubectl:
-    manifests:
-    - deploy/nginx-config-configmap.yaml
-- name: app
-  helm:
-    componentChart: true
-    values:
-      replicas: 1
-      annotations:
-        nginx-config-hash: $!{NGINX_CONFIG_HASH}
-      containers:
-      - name: nginx
-        image: nginx:${NGINX_IMAGE_VERSION}
-        volumeMounts:
-        - containerPath: /etc/nginx/conf.d
-          volume:
-            name: nginx-config
-            readOnly: true
-        - containerPath: /assets
-          volume:
-            name: ${ASSET_VOLUME_NAME}
-            readOnly: true
-      - name: php
-        image: ${APP_IMAGE}
-        command:
-        - "/bin/sh"
-        args:
-        - "-c"
-        - |
-          cp -r /var/www/html/public/* /assets/;
-          php-fpm
-        env:
-        - name: APP_DEBUG
-          value: $!{APP_DEBUG}
-        - name: APP_KEY
-          value: $!{APP_KEY}
-        - name: DB_HOST
-          value: $!{DB_HOST}
-        - name: DB_PORT
-          value: $!{DB_PORT}
-        - name: DB_USERNAME
-          value: $!{DB_USERNAME}
-        - name: DB_PASSWORD
-          value: $!{DB_PASSWORD}
-        - name: REDIS_PASSWORD
-          value: $!{REDIS_PASSWORD}
-        volumeMounts:
-        - containerPath: /assets
-          volume:
-            name: ${ASSET_VOLUME_NAME}
-            readOnly: false
-      initContainers:
-      - name: php-init
-        image: ${APP_IMAGE}
-        command:
-        - "/bin/sh"
-        args:
-        - "-c"
-        - |
-          while ! mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e ';' >/dev/null 2>&1 ; do
-            echo "Waiting for database to start..."
-            sleep 3
-          done
+version: v1beta10
 
-          php artisan config:clear
-          php artisan cache:clear
-          php artisan migrate --force --no-interaction
-        env:
-        - name: APP_KEY
-          value: $!{APP_KEY}
-        - name: DB_HOST
-          value: $!{DB_HOST}
-        - name: DB_PORT
-          value: $!{DB_PORT}
-        - name: DB_USERNAME
-          value: $!{DB_USERNAME}
-        - name: DB_PASSWORD
-          value: $!{DB_PASSWORD}
-        - name: REDIS_PASSWORD
-          value: $!{REDIS_PASSWORD}
-      service:
-        ports:
-        - port: 80
-      volumes:
-      - name: nginx-config
-        configMap:
-          name: nginx-config
-      - name: ${ASSET_VOLUME_NAME}
-        size: ${ASSET_VOLUME_SIZE}
-    recreate: true
-- name: redis
-  helm:
-    componentChart: false
-    chart:
-      name: redis
-      version: 12.8.3
-      repo: https://charts.bitnami.com/bitnami
-    values:
-      image:
-        tag: ${REDIS_VERSION}
-      networkPolicy:
-        enabled: true
-        allowExternal: true
-      password: $!{REDIS_PASSWORD}
-      cluster:
-        enabled: false
+# `vars` specifies variables which may be used as ${VAR_NAME} in devspace.yaml
+vars:
+  - name: APP_IMAGE
+    question: Which image repository should your image be pushed to? (e.g. dockerhubuser/image, gcr.io/project/image)
+  - name: DB_PASSWORD
+    password: true
+  - name: DB_ROOT_PASSWORD
+    password: true
+  - name: REDIS_PASSWORD
+    password: true
+  - name: APP_DEBUG
+    question: Enable debugging? (true/false)
+    default: true
+    source: env
+  - name: NGINX_CONFIG_HASH
+    source: command
+    command: kubectl
+    args: ["get", "configmap", "nginx-config", "--ignore-not-found", "-o", "jsonpath={.metadata.resourceVersion}"]
+# `deployments` tells DevSpace how to deploy this project
+deployments:
+  - name: mysql
+    helm:
+      componentChart: false
+      chart:
+        name: mysql
+        version: 8.4.4
+        repo: https://charts.bitnami.com/bitnami
+      values:
+        image:
+          tag: $!{DB_MYSQL_VERSION}
+        auth:
+          rootPassword: $!{DB_ROOT_PASSWORD}
+          database: $!{DB_DATABASE}
+          username: $!{DB_USERNAME}
+          password: $!{DB_PASSWORD}
+        primary:
+          service:
+            port: ${DB_PORT}
+  - name: nginx-config
+    kubectl:
+      manifests:
+        - deploy/nginx-config-configmap.yaml
+  - name: app
+    helm:
+      componentChart: true
+      values:
+        replicas: 1
+        annotations:
+          nginx-config-hash: $!{NGINX_CONFIG_HASH}
+        containers:
+          - name: nginx
+            image: nginx:${NGINX_IMAGE_VERSION}
+            volumeMounts:
+              - containerPath: /etc/nginx/conf.d
+                volume:
+                  name: nginx-config
+                  readOnly: true
+              - containerPath: /assets
+                volume:
+                  name: ${ASSET_VOLUME_NAME}
+                  readOnly: true
+          - name: php
+            image: ${APP_IMAGE}
+            command:
+              - "/bin/sh"
+            args:
+              - "-c"
+              - |
+                cp -r /var/www/html/public/* /assets/;
+                php-fpm
+            env:
+              - name: APP_DEBUG
+                value: $!{APP_DEBUG}
+              - name: APP_KEY
+                value: $!{APP_KEY}
+              - name: DB_HOST
+                value: $!{DB_HOST}
+              - name: DB_PORT
+                value: $!{DB_PORT}
+              - name: DB_USERNAME
+                value: $!{DB_USERNAME}
+              - name: DB_PASSWORD
+                value: $!{DB_PASSWORD}
+              - name: REDIS_PASSWORD
+                value: $!{REDIS_PASSWORD}
+            volumeMounts:
+              - containerPath: /assets
+                volume:
+                  name: ${ASSET_VOLUME_NAME}
+                  readOnly: false
+        initContainers:
+          - name: php-init
+            image: ${APP_IMAGE}
+            command:
+              - "/bin/sh"
+            args:
+              - "-c"
+              - |
+                while ! mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USERNAME" -p"$DB_PASSWORD" -e ';' >/dev/null 2>&1 ; do
+                  echo "Waiting for database to start..."
+                  sleep 3
+                done
+
+                php artisan config:clear
+                php artisan cache:clear
+                php artisan migrate --force --no-interaction
+            env:
+              - name: APP_KEY
+                value: $!{APP_KEY}
+              - name: DB_HOST
+                value: $!{DB_HOST}
+              - name: DB_PORT
+                value: $!{DB_PORT}
+              - name: DB_USERNAME
+                value: $!{DB_USERNAME}
+              - name: DB_PASSWORD
+                value: $!{DB_PASSWORD}
+              - name: REDIS_PASSWORD
+                value: $!{REDIS_PASSWORD}
+        service:
+          ports:
+            - port: 80
+        volumes:
+          - name: nginx-config
+            configMap:
+              name: nginx-config
+          - name: ${ASSET_VOLUME_NAME}
+            size: ${ASSET_VOLUME_SIZE}
+      recreate: true
+  - name: redis
+    helm:
+      componentChart: false
+      chart:
+        name: redis
+        version: 12.8.3
+        repo: https://charts.bitnami.com/bitnami
+      values:
+        image:
+          tag: ${REDIS_VERSION}
+        networkPolicy:
+          enabled: true
+          allowExternal: true
+        password: $!{REDIS_PASSWORD}
+        cluster:
+          enabled: false
+# `dev` only applies when you run `devspace dev`
 dev:
+  # `dev.ports` specifies all ports that should be forwarded while `devspace dev` is running
+  # Port-forwarding lets you access your application via localhost on your local machine
   ports:
-  - imageName: app
-    forward:
-    - port: 8080
-      remotePort: 80
+    - imageSelector: ${APP_IMAGE} # Select the Pod that runs our `${IMAGE}`
+      forward:
+        - port: 8080
+          remotePort: 80
+
+  # `dev.open` tells DevSpace to open certain URLs as soon as they return HTTP status 200
+  # Since we configured port-forwarding, we can use a localhost address here to access our application
   open:
-  - url: http://localhost:8080
+    - url: http://localhost:8080
+
+  # `dev.sync` configures a file sync between our Pods in k8s and your local project files
   sync:
-  - imageName: app
-    excludePaths:
-    - .git/
-    - .devspace/
-    - storage/logs/
-    - README.md
-    uploadExcludePaths:
-    - Dockerfile
-    - devspace.yaml
-    - storage/
-    - deploy/
-    - vendor/
-    - node_modules/
-    onUpload:
-      restartContainer: true
-      execRemote:
-        onBatch:
-          command: sh
-          args: ["-c", "cp -r /var/www/html/public/* /assets/"]
+    - imageSelector: ${APP_IMAGE} # Select the Pod that runs our `${IMAGE}`
+      excludePaths:
+        - .git/
+        - .git/
+        - .devspace/
+        - storage/logs/
+        - README.md
+      uploadExcludePaths:
+        - Dockerfile
+        - devspace.yaml
+        - storage/
+        - deploy/
+        - vendor/
+        - node_modules/
+      onUpload:
+        restartContainer: true
+        execRemote:
+          onBatch:
+            command: sh
+            args: ["-c", "cp -r /var/www/html/public/* /assets/"]
   logs:
-    showLast: 100
-    sync: true
-    selectors:
-    - containerName: nginx
+    images:
+      - nginx:${NGINX_IMAGE_VERSION}
   autoReload:
     paths:
-    - Dockerfile
-    - deploy/nginx-config-configmap.yaml
-vars:
-- name: APP_IMAGE
-  question: Which image repository should your image be pushed to? (e.g. dockerhubuser/image, gcr.io/project/image)
-- name: DB_PASSWORD
-  password: true
-- name: DB_ROOT_PASSWORD
-  password: true
-- name: REDIS_PASSWORD
-  password: true
-- name: APP_DEBUG
-  question: Enable debugging? (true/false)
-  default: true
-  source: env
-- name: NGINX_CONFIG_HASH
-  source: command
-  command: kubectl
-  args: ["get", "configmap", "nginx-config", "--ignore-not-found", "-o", "jsonpath={.metadata.resourceVersion}"]
-commands:
-- name: artisan
-  description: Entry point for artisan commands.
-  command: devspace enter -c php -- php artisan
-- name: composer
-  description: Entry point for composer commands.
-  command: devspace enter -c php -- composer
-- name: php
-  description: Entry point for PHP commands.
-  command: devspace enter -c php -- php
-- name: npm
-  description: Entry point for NPM commands.
-  command: devspace enter -c php -- npm
-- name: generate-key
-  description: Generate APP_KEY.
-  command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install --no-dev --no-interaction && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
-- name: mysql
-  description: Enter to MySQL shell.
-  command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
-hooks:
-- command: sh
-  args:
-    - -c
-    - |
-      while ! mysql -u root -p"${DB_ROOT_PASSWORD}" -e ";" >/dev/null 2>&1 ; do
-        echo "Waiting for database to be ready...";
-        sleep 3;
-      done
+      - Dockerfile
+      - deploy/nginx-config-configmap.yaml
+  # `dev.terminal` tells DevSpace to open a terminal as a last step during `devspace dev`
+  terminal:
+    imageSelector: ${APP_IMAGE} # Select the Pod that runs our `${IMAGE}`
+    # With this optional `command` we can tell DevSpace to run a script when opening the terminal
+    # This is often useful to display help info for new users or perform initial tasks (e.g. installing dependencies)
+    # DevSpace has generated an example ./devspace_start.sh file in your local project - Feel free to customize it!
+    command:
+      - ./devspace_start.sh
 
-      echo "CREATE USER IF NOT EXISTS '${DB_USERNAME}'@'%' IDENTIFIED BY '${DB_PASSWORD}'; ALTER USER '${DB_USERNAME}' IDENTIFIED BY '${DB_PASSWORD}';" | mysql -u root -p'${DB_ROOT_PASSWORD}'
-  where:
-    container:
-      labelSelector: 
-        app.kubernetes.io/name: mysql
-        app.kubernetes.io/component: primary
-  when:
-    after:
-      deployments: mysql
-- command: "npm"
-  args: ["run", "watch"]
-  background: true
-  silent: true
-  where:
-    container:
-      labelSelector:
-        app.kubernetes.io/component: "app"
-      containerName: php
-  when:
-    after:
-      deployments: all
-- command: "sh"
-  args: ["-c", "nginx -t && nginx -s reload"]
-  where:
-    container:
-      labelSelector:
-        app.kubernetes.io/component: "app"
-      containerName: nginx
-  when:
-    after:
-      deployments: all
+  # Since our Helm charts and manifests deployments are often optimized for production,
+  # DevSpace let's you swap out Pods dynamically to get a better dev environment
+  replacePods:
+    - imageSelector: ${APP_IMAGE} # Select the Pod that runs our `${IMAGE}`
+      # Since the `${IMAGE}` used to start our main application pod may be distroless or not have any dev tooling, let's replace it with a dev-optimized image
+      # DevSpace provides a sample image here but you can use any image for your specific needs
+      replaceImage: loftsh/php:7.3-fpm
+      # Besides replacing the container image, let's also apply some patches to the `spec` of our Pod
+      # We are overwriting `command` + `args` for the first container in our selected Pod, so it starts with `sleep 9999999`
+      # Using `sleep 9999999` as PID 1 (instead of the regular ENTRYPOINT), allows you to start the application manually
+      patches:
+        - op: remove
+          path: spec.containers[0].securityContext
+  logs:
+    images:
+      - nginx:${NGINX_IMAGE_VERSION}
+# `profiles` lets you modify the config above for different environments (e.g. dev vs production)
 profiles:
-- name: production
-  patches:
-  - op: remove
-    path: images.app.appendDockerfileInstructions
-  - op: remove
-    path: images.app.injectRestartHelper
-  - op: remove
-    path: images.app.build.docker.options.target
-  - op: replace
-    path: deployments.name=app.helm.values.containers.name=php.env.name=APP_DEBUG.value
-    value: "false"
-- name: interactive
-  patches:
-  - op: add
-    path: dev.interactive
-    value:
-      defaultEnabled: true
-  - op: replace
-    path: deployments.name=app.helm.values.containers.name=php.args
-    value:
-    - "-c"
-    - "sleep 9999999999"
+  # This profile is called `production` and you can use it for example using: devspace deploy -p production
+  # We generally recommend to use the base config without any profiles as optimized for development (e.g. image build+push is disabled)
+  - name: development
+    # This profile adds our image to the config so that DevSpace will build, tag and push our image before the deployment
+    merge:
+      images:
+        app:
+          image: ${APP_IMAGE} # Use the value of our `${IMAGE}` variable here (see vars above)
+          dockerfile: ./Dockerfile
+#          build:
+#            docker:
+#              args:
+#                - "--no-cache"
+commands:
+  - name: artisan
+    description: Entry point for artisan commands.
+    command: devspace enter -c php -- php artisan
+  - name: composer
+    description: Entry point for composer commands.
+    command: devspace enter -c php -- composer
+  - name: php
+    description: Entry point for PHP commands.
+    command: devspace enter -c php -- php
+  - name: npm
+    description: Entry point for NPM commands.
+    command: devspace enter -c php -- npm
+  - name: generate-key
+    description: Generate APP_KEY.
+    command: TMP_FILE=.devspace/app_key.tmp && docker run --rm -v $PWD:/app composer/composer bash -c "composer install --no-dev --no-interaction && php artisan key:generate --show >$TMP_FILE" && devspace set var APP_KEY="$(cat $TMP_FILE)" && rm $TMP_FILE
+  - name: mysql
+    description: Enter to MySQL shell.
+    command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
+hooks:
+  - command: sh
+    args:
+      - -c
+      - |
+        while ! mysql -u root -p"${DB_ROOT_PASSWORD}" -e ";" >/dev/null 2>&1 ; do
+          echo "Waiting for database to be ready...";
+          sleep 3;
+        done
+
+        echo "CREATE USER IF NOT EXISTS '${DB_USERNAME}'@'%' IDENTIFIED BY '${DB_PASSWORD}'; ALTER USER '${DB_USERNAME}' IDENTIFIED BY '${DB_PASSWORD}';" | mysql -u root -p'${DB_ROOT_PASSWORD}'
+    where:
+      container:
+        labelSelector:
+          app.kubernetes.io/name: mysql
+          app.kubernetes.io/component: primary
+    when:
+      after:
+        deployments: mysql
+  - command: "npm"
+    args: ["run", "watch"]
+    background: true
+    silent: true
+    where:
+      container:
+        labelSelector:
+          app.kubernetes.io/component: "app"
+        containerName: php
+    when:
+      after:
+        deployments: all
+  - command: "sh"
+    args: ["-c", "nginx -t && nginx -s reload"]
+    where:
+      container:
+        labelSelector:
+          app.kubernetes.io/component: "app"
+        containerName: nginx
+    when:
+      after:
+        deployments: all
