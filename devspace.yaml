@@ -1,5 +1,5 @@
 version: v1beta10
-
+# https://devspace.sh/cli/docs/configuration/variables/basics
 vars:
   - name: APP_IMAGE
     question: Which image repository should your image be pushed to? (e.g. dockerhubuser/image, gcr.io/project/image)
@@ -17,10 +17,13 @@ vars:
     source: command
     command: kubectl
     args: ["get", "configmap", "nginx-config", "--ignore-not-found", "-o", "jsonpath={.metadata.resourceVersion}"]
+
+# https://devspace.sh/cli/docs/configuration/images/basics
 images:
   app:
     image: ${APP_IMAGE}
     dockerfile: ./Dockerfile
+# https://devspace.sh/cli/docs/configuration/deployments/basics
 deployments:
   - name: mysql
     helm:
@@ -147,6 +150,7 @@ deployments:
         password: $!{REDIS_PASSWORD}
         cluster:
           enabled: false
+# https://devspace.sh/cli/docs/configuration/development/basics
 dev:
   ports:
     - imageSelector: ${APP_IMAGE}
@@ -186,13 +190,13 @@ dev:
     paths:
       - Dockerfile
       - deploy/nginx-config-configmap.yaml
-
+# https://devspace.sh/cli/docs/configuration/profiles/basics
 profiles:
   - name: production
     patches:
       - op: remove
         path: hooks
-
+# https://devspace.sh/cli/docs/configuration/commands/basics
 commands:
   - name: artisan
     description: Entry point for artisan commands.
@@ -213,6 +217,7 @@ commands:
     description: Enter to MySQL shell.
     command: devspace enter -c mysql -- mysql -h'${DB_HOST}' -P'${DB_PORT}' -u'${DB_USERNAME}' -p'${DB_PASSWORD}' '${DB_DATABASE}'
 
+# https://devspace.sh/cli/docs/configuration/hooks/basics
 hooks:
   - command: sh
     args:
